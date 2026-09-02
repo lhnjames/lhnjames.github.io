@@ -688,9 +688,16 @@ a.publication-row:hover {
   font-size: 0.79rem;
 }
 .compact-publication {
-  grid-template-columns: minmax(0, 1fr) 24px;
+  grid-template-columns: 36px minmax(0, 1fr) 24px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.publication-index {
+  padding-top: 3px;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 .simple-block {
   padding-top: 18px;
@@ -768,7 +775,7 @@ a.publication-row:hover {
     padding-bottom: 58px;
   }
   .compact-publication {
-    grid-template-columns: minmax(0, 1fr) 18px;
+    grid-template-columns: 30px minmax(0, 1fr) 18px;
   }
   .honours-row {
     grid-template-columns: 1fr;

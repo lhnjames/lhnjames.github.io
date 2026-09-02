@@ -228,13 +228,17 @@ export default function Page() {
           <div className="section-heading">
             <div className="section-label">
               <span>01</span>
-              <h2 id="publications-title">Selected publications</h2>
+              <h2 id="publications-title">Publications</h2>
             </div>
+            <p>All 9 papers · submitted, published and preprint work</p>
           </div>
           <div className="publication-list">
-            {publications.map((publication) => {
+            {publications.map((publication, index) => {
               const content = (
                 <>
+                  <span className="publication-index" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <span>
                     <strong>{publication.title}</strong>
                     <small>{publication.venue}</small>
