@@ -7,8 +7,8 @@
   --paper-deep: #e9e4d8;
   --accent: #0f6b63;
   --line: rgba(16, 42, 45, 0.18);
-  --display: var(--font-display), "Segoe UI", sans-serif;
-  --body: var(--font-body), "Segoe UI", sans-serif;
+  --display: "Aptos Display", "Segoe UI", Arial, sans-serif;
+  --body: "Aptos", "Segoe UI", Arial, sans-serif;
 }
 
 * {

@@ -174,6 +174,7 @@ export default function Page() {
               width={1200}
               height={1800}
               priority
+              unoptimized
               sizes="(max-width: 800px) 100vw, 34vw"
             />
           </figure>
