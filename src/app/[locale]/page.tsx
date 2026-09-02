@@ -157,8 +157,8 @@ export default function Page() {
               learning.
             </p>
             <p className="phd-status">
-              <span aria-hidden="true" /> Currently seeking PhD opportunities
-              for 2027 entry.
+              <span aria-hidden="true" /> Currently seeking direct-entry PhD
+              opportunities starting in September 2027.
             </p>
             <div className="hero-links">
               <a href="mailto:lhnjames@163.com">
