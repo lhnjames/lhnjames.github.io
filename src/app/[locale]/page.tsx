@@ -1,7 +1,14 @@
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 
-const experience = [
+const internships = [
+  {
+    period: "Jun 2025 — Sep 2025",
+    role: "AI Engineer Intern",
+    organization: "Sheet0",
+    summary:
+      "Built configurable multi-agent data workflows, improving collection accuracy, fault tolerance and execution recovery.",
+  },
   {
     period: "Jun 2026 — Present",
     role: "Video Generation Infrastructure Engineer Intern",
@@ -9,6 +16,9 @@ const experience = [
     summary:
       "Building SGLang-based diffusion-model serving with parallelism, quantization and GPU performance optimization.",
   },
+];
+
+const researchExperience = [
   {
     period: "May 2025 — Sep 2026",
     role: "Research Assistant",
@@ -18,44 +28,20 @@ const experience = [
       "Developed LLM-driven compiler systems, reaching 90%+ IR decompilation accuracy and up to 16.7× program speedup.",
   },
   {
-    period: "Oct 2025 — Jul 2026",
-    role: "Research Assistant",
-    organization: "Peking University",
-    group: "National Engineering Laboratory",
-    summary:
-      "Designed adaptive hyperbolic graph models and auditable evidence chains for social-bot detection.",
-  },
-  {
     period: "Jun 2024 — Jun 2025",
     role: "Research Assistant",
-    organization: "Peking University",
-    group: "School of Computer Science",
+    organization: "School of Computer Science, Peking University",
+    group: "Yang Tong Group",
     summary:
       "Proposed dynamic KV-cache compression, achieving 70% compression on LongBench with only 1% performance loss.",
   },
   {
-    period: "May 2026 — Sep 2026",
+    period: "Oct 2025 — Jul 2026",
     role: "Research Assistant",
-    organization: "HKUST (Guangzhou)",
-    group: "Yang Menglin Group",
+    organization: "National Engineering Laboratory, Peking University",
+    group: "Chong Bin Group",
     summary:
-      "Studied Loop Transformers and recurrent computation in Llama-3-8B through hidden-state dynamics and controlled cross-task evaluation.",
-  },
-  {
-    period: "Sep 2025 — Feb 2026",
-    role: "Research Assistant",
-    organization: "Westlake University",
-    group: "Li Ziqing Group",
-    summary:
-      "Developed hierarchical generative representations for single-cell data using vector quantization, tree routing and diffusion models.",
-  },
-  {
-    period: "Jun 2025 — Aug 2025",
-    role: "Research Assistant",
-    organization: "Tsinghua University",
-    group: "Wei Jun Group",
-    summary:
-      "Built knowledge-graph reasoning and multi-hop QA systems, and deployed low-latency LLM and streaming-TTS services for real-time voice interaction.",
+      "Designed adaptive hyperbolic graph models and auditable evidence chains for social-bot detection.",
   },
   {
     period: "Jun 2025 — Aug 2025",
@@ -66,11 +52,28 @@ const experience = [
       "Developed an MCP-based multi-agent framework with task decomposition, dynamic tool routing and adaptive execution recovery.",
   },
   {
-    period: "Jun 2025 — Sep 2025",
-    role: "AI Engineer Intern",
-    organization: "Sheet0",
+    period: "Jun 2025 — Aug 2025",
+    role: "Research Assistant",
+    organization: "Tsinghua University",
+    group: "Wei Jun Group",
     summary:
-      "Built configurable multi-agent data workflows, improving collection accuracy, fault tolerance and execution recovery.",
+      "Built knowledge-graph reasoning and multi-hop QA systems, and deployed low-latency LLM and streaming-TTS services for real-time voice interaction.",
+  },
+  {
+    period: "Sep 2025 — Feb 2026",
+    role: "Research Assistant",
+    organization: "Westlake University",
+    group: "Li Ziqing Group",
+    summary:
+      "Developed hierarchical generative representations for single-cell data using vector quantization, tree routing and diffusion models.",
+  },
+  {
+    period: "May 2026 — Sep 2026",
+    role: "Research Assistant",
+    organization: "HKUST (Guangzhou)",
+    group: "Yang Menglin Group",
+    summary:
+      "Studied Loop Transformers and recurrent computation in Llama-3-8B through hidden-state dynamics and controlled cross-task evaluation.",
   },
 ];
 
@@ -145,8 +148,9 @@ export default function Page() {
           HL<span>.</span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#experience">Experience</a>
-          <a href="#publications">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#internships">Internships</a>
+          <a href="#research-experience">Research</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
@@ -192,44 +196,13 @@ export default function Page() {
         </section>
 
         <section
-          id="experience"
-          className="section-rule compact-section"
-          aria-labelledby="experience-title"
-        >
-          <div className="section-heading">
-            <div className="section-label">
-              <span>01</span>
-              <h2 id="experience-title">Experience</h2>
-            </div>
-          </div>
-          <div className="timeline compact-timeline">
-            {experience.map((item) => (
-              <article
-                className="timeline-item"
-                key={`${item.organization}-${item.period}`}
-              >
-                <p className="timeline-period">{item.period}</p>
-                <div>
-                  <p className="timeline-org">{item.organization}</p>
-                  <h3>{item.group ?? item.role}</h3>
-                  {item.group ? (
-                    <p className="timeline-role">{item.role}</p>
-                  ) : null}
-                  <p>{item.summary}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
           id="publications"
           className="section-rule compact-section"
           aria-labelledby="publications-title"
         >
           <div className="section-heading">
             <div className="section-label">
-              <span>02</span>
+              <span>01</span>
               <h2 id="publications-title">Selected publications</h2>
             </div>
           </div>
@@ -270,10 +243,67 @@ export default function Page() {
           </div>
         </section>
 
+        <section
+          id="internships"
+          className="section-rule compact-section"
+          aria-labelledby="internships-title"
+        >
+          <div className="section-heading">
+            <div className="section-label">
+              <span>02</span>
+              <h2 id="internships-title">Internships</h2>
+            </div>
+          </div>
+          <div className="timeline compact-timeline">
+            {internships.map((item) => (
+              <article
+                className="timeline-item"
+                key={`${item.organization}-${item.period}`}
+              >
+                <p className="timeline-period">{item.period}</p>
+                <div>
+                  <p className="timeline-org">{item.organization}</p>
+                  <h3>{item.role}</h3>
+                  <p>{item.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="research-experience"
+          className="section-rule compact-section"
+          aria-labelledby="research-experience-title"
+        >
+          <div className="section-heading">
+            <div className="section-label">
+              <span>03</span>
+              <h2 id="research-experience-title">Research experience</h2>
+            </div>
+          </div>
+          <div className="timeline compact-timeline">
+            {researchExperience.map((item) => (
+              <article
+                className="timeline-item"
+                key={`${item.organization}-${item.period}`}
+              >
+                <p className="timeline-period">{item.period}</p>
+                <div>
+                  <p className="timeline-org">{item.organization}</p>
+                  <h3>{item.group}</h3>
+                  <p className="timeline-role">{item.role}</p>
+                  <p>{item.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="two-column section-rule compact-section">
           <div>
             <div className="section-label compact-label">
-              <span>03</span>
+              <span>04</span>
               <h2>Education</h2>
             </div>
             <div className="simple-block">
@@ -285,7 +315,7 @@ export default function Page() {
 
           <div>
             <div className="section-label compact-label">
-              <span>04</span>
+              <span>05</span>
               <h2>Skills</h2>
             </div>
             <div className="skill-tags">
