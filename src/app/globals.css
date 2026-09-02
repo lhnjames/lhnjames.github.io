@@ -45,7 +45,6 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 18px clamp(24px, 5vw, 80px);
-  border-bottom: 1px solid rgba(16, 42, 45, 0.1);
   background: rgba(244, 241, 233, 0.88);
   backdrop-filter: blur(14px);
 }
@@ -241,7 +240,6 @@ a {
 
 .section-rule {
   padding: 96px 0;
-  border-bottom: 1px solid var(--line);
   scroll-margin-top: 72px;
 }
 .intro-grid,
@@ -323,14 +321,14 @@ a {
   text-align: right;
 }
 .timeline {
-  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 16px;
 }
 .timeline-item {
   display: grid;
   grid-template-columns: 210px minmax(0, 1fr);
   gap: 36px;
   padding: 33px 0;
-  border-bottom: 1px solid var(--line);
 }
 .timeline-period {
   margin: 2px 0 0 !important;
@@ -346,6 +344,14 @@ a {
   font-weight: 800;
   letter-spacing: 0.045em;
   text-transform: uppercase;
+}
+.timeline-org-link {
+  display: inline-block;
+  transition: opacity 160ms ease;
+}
+.timeline-org-link:hover,
+.timeline-org-link:focus-visible {
+  opacity: 0.62;
 }
 .timeline-item h3,
 .education-card h3 {
@@ -401,7 +407,8 @@ a {
   font-size: 0.86rem;
 }
 .publication-list {
-  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 4px;
 }
 .publication-row {
   display: grid;
@@ -409,7 +416,6 @@ a {
   gap: 24px;
   align-items: start;
   padding: 24px 0;
-  border-bottom: 1px solid var(--line);
   transition:
     padding 160ms ease,
     color 160ms ease;
@@ -672,8 +678,8 @@ a.publication-row:hover {
   grid-template-columns: repeat(3, 1fr);
 }
 .compact-section {
-  padding-top: 74px;
-  padding-bottom: 74px;
+  padding-top: 58px;
+  padding-bottom: 58px;
 }
 .compact-section .section-heading {
   margin-bottom: 32px;
@@ -683,14 +689,14 @@ a.publication-row:hover {
   padding-bottom: 24px;
 }
 .research-priority-list {
-  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 10px;
 }
 .research-featured-item {
   display: grid;
   grid-template-columns: 180px minmax(0, 1fr);
   gap: 36px;
   padding: 28px 0;
-  border-bottom: 1px solid var(--line);
 }
 .research-featured-item h3,
 .research-secondary-item h3 {
@@ -725,7 +731,6 @@ a.publication-row:hover {
   gap: 26px;
   align-items: start;
   padding: 17px 0;
-  border-top: 1px solid var(--line);
 }
 .research-secondary-item h3 {
   font-size: 1rem;
@@ -758,7 +763,6 @@ a.publication-row:hover {
 }
 .simple-block {
   padding-top: 18px;
-  border-top: 1px solid var(--ink);
 }
 .education-record {
   display: grid;
@@ -795,7 +799,6 @@ a.publication-row:hover {
   grid-template-columns: 120px 1fr;
   gap: 30px;
   padding: 25px 0;
-  border-bottom: 1px solid var(--line);
   font-size: 0.8rem;
 }
 .honours-row span {
@@ -834,8 +837,8 @@ a.publication-row:hover {
     border-bottom: 0;
   }
   .compact-section {
-    padding-top: 58px;
-    padding-bottom: 58px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
   .research-featured-item,
   .research-secondary-item {

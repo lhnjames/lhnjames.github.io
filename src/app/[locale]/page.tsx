@@ -8,6 +8,7 @@ const internships = [
     period: "Jun 2025 — Sep 2025",
     role: "AI Engineer Intern",
     organization: "Sheet0",
+    href: "https://www.sheet0.com/",
     summary:
       "Built configurable multi-agent data workflows, improving collection accuracy, fault tolerance and execution recovery.",
   },
@@ -15,6 +16,7 @@ const internships = [
     period: "Jun 2026 — Sep 2026",
     role: "Video Generation Infrastructure Engineer Intern",
     organization: "Xingjie Intelligence",
+    href: "https://www.frame-x.ai/",
     summary:
       "Building SGLang-based diffusion-model serving with parallelism, quantization and GPU performance optimization.",
   },
@@ -137,7 +139,7 @@ export default function Page() {
     <main>
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Back to top">
-          HL<span>.</span>
+          Hanning Lu
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#education">Education</a>
@@ -239,7 +241,6 @@ export default function Page() {
               <span>02</span>
               <h2 id="publications-title">Publications</h2>
             </div>
-            <p>All 9 papers · submitted, published and preprint work</p>
           </div>
           <div className="publication-list">
             {publications.map((publication, index) => {
@@ -300,7 +301,14 @@ export default function Page() {
               >
                 <p className="timeline-period">{item.period}</p>
                 <div>
-                  <p className="timeline-org">{item.organization}</p>
+                  <a
+                    className="timeline-org timeline-org-link"
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.organization}
+                  </a>
                   <h3>{item.role}</h3>
                   <p>{item.summary}</p>
                 </div>
