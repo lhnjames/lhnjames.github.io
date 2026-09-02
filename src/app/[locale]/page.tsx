@@ -12,49 +12,56 @@ const experience = [
   {
     period: "May 2025 — Sep 2026",
     role: "Research Assistant",
-    organization: "University of Leeds · Distributed Computing Group",
+    organization: "University of Leeds",
+    group: "Distributed Computing Group",
     summary:
       "Developed LLM-driven compiler systems, reaching 90%+ IR decompilation accuracy and up to 16.7× program speedup.",
   },
   {
     period: "Oct 2025 — Jul 2026",
     role: "Research Assistant",
-    organization: "Peking University · National Engineering Laboratory",
+    organization: "Peking University",
+    group: "National Engineering Laboratory",
     summary:
       "Designed adaptive hyperbolic graph models and auditable evidence chains for social-bot detection.",
   },
   {
     period: "Jun 2024 — Jun 2025",
     role: "Research Assistant",
-    organization: "Peking University · School of Computer Science",
+    organization: "Peking University",
+    group: "School of Computer Science",
     summary:
       "Proposed dynamic KV-cache compression, achieving 70% compression on LongBench with only 1% performance loss.",
   },
   {
     period: "May 2026 — Sep 2026",
     role: "Research Assistant",
-    organization: "HKUST (Guangzhou) · Yang Menglin Group",
+    organization: "HKUST (Guangzhou)",
+    group: "Yang Menglin Group",
     summary:
       "Studied Loop Transformers and recurrent computation in Llama-3-8B through hidden-state dynamics and controlled cross-task evaluation.",
   },
   {
     period: "Sep 2025 — Feb 2026",
     role: "Research Assistant",
-    organization: "Westlake University · Li Ziqing Group",
+    organization: "Westlake University",
+    group: "Li Ziqing Group",
     summary:
       "Developed hierarchical generative representations for single-cell data using vector quantization, tree routing and diffusion models.",
   },
   {
     period: "Jun 2025 — Aug 2025",
     role: "Research Assistant",
-    organization: "Tsinghua University · Wei Jun Group",
+    organization: "Tsinghua University",
+    group: "Wei Jun Group",
     summary:
       "Built knowledge-graph reasoning and multi-hop QA systems, and deployed low-latency LLM and streaming-TTS services for real-time voice interaction.",
   },
   {
     period: "Jun 2025 — Aug 2025",
     role: "Research Assistant",
-    organization: "Shanghai Jiao Tong University · Deng Zhijie Group",
+    organization: "Shanghai Jiao Tong University",
+    group: "Deng Zhijie Group",
     summary:
       "Developed an MCP-based multi-agent framework with task decomposition, dynamic tool routing and adaptive execution recovery.",
   },
@@ -185,24 +192,6 @@ export default function Page() {
         </section>
 
         <section
-          className="fact-strip compact-facts"
-          aria-label="Profile highlights"
-        >
-          <div>
-            <strong>3.8 / 4.0</strong>
-            <span>GPA · Top 1%</span>
-          </div>
-          <div>
-            <strong>1.55×</strong>
-            <span>Average compiler speedup over -O3</span>
-          </div>
-          <div>
-            <strong>90%+</strong>
-            <span>Iterative IR decompilation accuracy</span>
-          </div>
-        </section>
-
-        <section
           id="experience"
           className="section-rule compact-section"
           aria-labelledby="experience-title"
@@ -222,7 +211,10 @@ export default function Page() {
                 <p className="timeline-period">{item.period}</p>
                 <div>
                   <p className="timeline-org">{item.organization}</p>
-                  <h3>{item.role}</h3>
+                  <h3>{item.group ?? item.role}</h3>
+                  {item.group ? (
+                    <p className="timeline-role">{item.role}</p>
+                  ) : null}
                   <p>{item.summary}</p>
                 </div>
               </article>
@@ -306,10 +298,10 @@ export default function Page() {
 
         <section className="honours-row" aria-label="Awards">
           <span>Honours</span>
-          <p>
-            CCPC 2024 Gold Medal · ICPC Xi&apos;an Invitational Silver Medal ·
-            Team captain
-          </p>
+          <div>
+            <p>CCPC 2024 · Gold Medal · Team Captain</p>
+            <p>ICPC Xi&apos;an Invitational · Silver Medal · Team Captain</p>
+          </div>
         </section>
 
         <section
@@ -317,10 +309,8 @@ export default function Page() {
           className="contact-section compact-contact"
           aria-labelledby="contact-title"
         >
-          <p className="eyebrow">Contact</p>
-          <h2 id="contact-title">
-            Research, systems, or a good technical problem?
-          </h2>
+          <h2 id="contact-title">Contact</h2>
+          <p>PhD opportunities and research collaborations.</p>
           <a href="mailto:lhnjames@163.com">
             lhnjames@163.com <ArrowUpRight aria-hidden="true" />
           </a>
