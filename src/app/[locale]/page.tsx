@@ -71,13 +71,13 @@ const publications = [
   {
     title:
       "SAHG: Sector-Anisotropic Hyperbolic Graph Model for Social Bot Detection",
-    venue: "Submitted to NeurIPS 2026 · Under review · First author",
+    venue: "Under review at NeurIPS 2026 · First author",
     href: "https://arxiv.org/abs/2605.30166",
   },
   {
     title:
       "VeriBot: Evidence-Routed Social Bot Detection with Auditable Decision Chains",
-    venue: "Submitted to AAAI 2027 · Under review · First author",
+    venue: "Under review at AAAI 2027 · First author",
   },
   {
     title:
@@ -87,16 +87,16 @@ const publications = [
   },
   {
     title: "BotRoute: Dual-Branch Selective Routing for Social Bot Detection",
-    venue: "Submitted to KDD 2027 · Under review",
+    venue: "Under review at KDD 2027",
   },
   {
     title: "Hierarchy-Aware Sparse Autoencoders via Activation-Cone Routing",
-    venue: "Submitted to AAAI 2027 · Under review",
+    venue: "Under review at AAAI 2027",
   },
   {
     title:
       "HCGM: Hyperbolic Code Graph Modeling for Repository-Level Software Intelligence",
-    venue: "Submitted to KDD 2027 · Under review",
+    venue: "Under review at KDD 2027",
   },
   {
     title:
