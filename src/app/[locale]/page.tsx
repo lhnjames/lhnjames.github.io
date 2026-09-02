@@ -12,7 +12,7 @@ const internships = [
       "Built configurable multi-agent data workflows, improving collection accuracy, fault tolerance and execution recovery.",
   },
   {
-    period: "Jun 2026 — Present",
+    period: "Jun 2026 — Sep 2026",
     role: "Video Generation Infrastructure Engineer Intern",
     organization: "Xingjie Intelligence",
     summary:
