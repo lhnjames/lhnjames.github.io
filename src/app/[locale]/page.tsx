@@ -81,6 +81,7 @@ const researchExperience = [
     group: "Menglin Yang Group",
     summary:
       "Studied Loop Transformers and recurrent computation in Llama-3-8B through hidden-state dynamics and controlled cross-task evaluation.",
+    featured: true,
   },
 ];
 
@@ -142,10 +143,28 @@ export default function Page() {
           Hanning Lu
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#education">Education</a>
-          <a href="#publications">Publications</a>
-          <a href="#internships">Internships</a>
-          <a href="#research-experience">Research</a>
+          <a className="nav-section" href="#education">
+            Education
+          </a>
+          <a className="nav-section" href="#publications">
+            Publications
+          </a>
+          <a className="nav-section" href="#internships">
+            Internships
+          </a>
+          <a className="nav-section" href="#research-experience">
+            Research
+          </a>
+          <a
+            className="nav-action nav-resume"
+            href="/Hanning_Lu_CV.pdf"
+            download="Hanning_Lu_CV.pdf"
+          >
+            Resume
+          </a>
+          <a className="nav-action nav-contact" href="mailto:lhnjames@163.com">
+            Contact
+          </a>
         </nav>
       </header>
 

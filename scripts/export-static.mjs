@@ -36,7 +36,7 @@ await writeFile(
   "utf8",
 );
 
-for (const asset of ["hanning-lu.jpg", "og.png"]) {
+for (const asset of ["hanning-lu.jpg", "og.png", "Hanning_Lu_CV.pdf"]) {
   await cp(path.join(root, "public", asset), path.join(outputDirectory, asset));
 }
 
