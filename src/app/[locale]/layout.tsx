@@ -1,52 +1,51 @@
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { hasLocale, Locale, NextIntlClientProvider } from "next-intl";
-import {
-  getMessages,
-  getTranslations,
-  setRequestLocale,
-} from "next-intl/server";
-import { ThemeProvider } from "next-themes";
-import { Inter as FontSans } from "next/font/google";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { Inter, Manrope } from "next/font/google";
 import { notFound } from "next/navigation";
+import { getMessages } from "next-intl/server";
 
-import Footer from "@/components/blocks/footer";
-import Navbar from "@/components/blocks/navbar/navbar";
-import { ScrollRestore } from "@/components/blocks/scroll-restore";
-import JsonLdScripts from "@/components/jsonld-scripts";
-import {
-  BaiduSiteVerification,
-  GoogleTagManager,
-} from "@/components/third-party";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { DEFAULT_LOCALE, routing } from "@/i18n/routing";
-import { constructMetadata } from "@/lib/metadata";
-import { cn } from "@/lib/utils";
+import { routing } from "@/i18n/routing";
 
-/* Fonts */
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-display" });
 
-/* Metadata */
-type MetadataProps = {
-  params: Promise<{ locale: string }>;
+export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
+  title: "Hanning Lu · AI Systems Researcher",
+  description:
+    "Hanning Lu is a Computer Science student and AI systems researcher working on efficient inference, compiler optimization and graph machine learning.",
+  keywords: [
+    "Hanning Lu",
+    "陆涵宁",
+    "AI systems",
+    "compiler optimization",
+    "efficient inference",
+    "graph machine learning",
+  ],
+  openGraph: {
+    title: "Hanning Lu · AI Systems Researcher",
+    description:
+      "Efficient inference, compiler optimization and graph machine learning.",
+    type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1729,
+        height: 910,
+        alt: "Hanning Lu — AI Systems, Compiler Optimization, Graph ML",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hanning Lu · AI Systems Researcher",
+    description:
+      "Efficient inference, compiler optimization and graph machine learning.",
+    images: ["/og.png"],
+  },
 };
-
-export async function generateMetadata({
-  params,
-}: MetadataProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale });
-
-  return constructMetadata({
-    description: t("headline"),
-    locale: locale as Locale,
-    path: `/`,
-  });
-}
 
 export default async function LocaleLayout({
   children,
@@ -57,53 +56,15 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // Validate locale - if invalid, trigger 404
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-  setRequestLocale(locale);
-
+  if (!hasLocale(routing.locales, locale)) notFound();
   const messages = await getMessages();
 
   return (
-    <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
-      <head>
-        <BaiduSiteVerification />
-        <JsonLdScripts locale={locale} />
-      </head>
-
-      <body
-        className={cn(
-          "bg-background min-h-screen font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
-        {/* Main Layout */}
+    <html lang="en">
+      <body className={`${inter.variable} ${manrope.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <TooltipProvider delayDuration={0}>
-              <ScrollRestore />
-              <Navbar />
-              {children}
-              <Footer />
-            </TooltipProvider>
-          </ThemeProvider>
+          {children}
         </NextIntlClientProvider>
-
-        {/* Third-party services */}
-        {process.env.NODE_ENV === "development" ? null : (
-          <>
-            <GoogleTagManager />
-            {process.env.VERCEL_ENV ? (
-              <>
-                <Analytics />
-                <SpeedInsights />
-              </>
-            ) : (
-              <></>
-            )}
-          </>
-        )}
       </body>
     </html>
   );

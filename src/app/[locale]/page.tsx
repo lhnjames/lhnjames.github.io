@@ -1,375 +1,331 @@
-import { getTranslations } from "next-intl/server";
-import Link from "next/link";
-import type React from "react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
 
-import { Icons } from "@/components/icons";
-import AwardsSection from "@/components/portfolio/awards-section";
-import Brief from "@/components/portfolio/brief";
-import Contact from "@/components/portfolio/contact";
-import Education from "@/components/portfolio/education";
-import NewsSection from "@/components/portfolio/news";
-import ProjectsSection from "@/components/portfolio/projects-section/projects-section";
-import Services from "@/components/portfolio/services";
-import Skills from "@/components/portfolio/skills";
-import SocialLinks from "@/components/portfolio/socallinks";
-import Talks from "@/components/portfolio/talks";
-import Work from "@/components/portfolio/work";
-import { CustomReactMarkdown } from "@/components/react-markdown";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { BLUR_FADE_DELAY, siteConfig } from "@/data/site";
-import { routing } from "@/i18n/routing";
-import { generatePersonJsonLd } from "@/lib/jsonld";
-import { transformSocialData } from "@/lib/social-icons";
-import { getIconComponent, jsonldScript } from "@/lib/utils";
+const experience = [
+  {
+    period: "Jun 2026 — Present",
+    role: "Video Generation Infrastructure Engineer Intern",
+    organization: "Xingjie Intelligence",
+    summary:
+      "Building SGLang-based diffusion-model serving with parallelism, quantization and GPU performance optimization.",
+  },
+  {
+    period: "May 2025 — Sep 2026",
+    role: "Research Assistant",
+    organization: "University of Leeds · Distributed Computing Group",
+    summary:
+      "Developed LLM-driven compiler systems, reaching 90%+ IR decompilation accuracy and up to 16.7× program speedup.",
+  },
+  {
+    period: "Oct 2025 — Jul 2026",
+    role: "Research Assistant",
+    organization: "Peking University · National Engineering Laboratory",
+    summary:
+      "Designed adaptive hyperbolic graph models and auditable evidence chains for social-bot detection.",
+  },
+  {
+    period: "Jun 2024 — Jun 2025",
+    role: "Research Assistant",
+    organization: "Peking University · School of Computer Science",
+    summary:
+      "Proposed dynamic KV-cache compression, achieving 70% compression on LongBench with only 1% performance loss.",
+  },
+  {
+    period: "May 2026 — Sep 2026",
+    role: "Research Assistant",
+    organization: "HKUST (Guangzhou) · Yang Menglin Group",
+    summary:
+      "Studied Loop Transformers and recurrent computation in Llama-3-8B through hidden-state dynamics and controlled cross-task evaluation.",
+  },
+  {
+    period: "Sep 2025 — Feb 2026",
+    role: "Research Assistant",
+    organization: "Westlake University · Li Ziqing Group",
+    summary:
+      "Developed hierarchical generative representations for single-cell data using vector quantization, tree routing and diffusion models.",
+  },
+  {
+    period: "Jun 2025 — Aug 2025",
+    role: "Research Assistant",
+    organization: "Tsinghua University · Wei Jun Group",
+    summary:
+      "Built knowledge-graph reasoning and multi-hop QA systems, and deployed low-latency LLM and streaming-TTS services for real-time voice interaction.",
+  },
+  {
+    period: "Jun 2025 — Aug 2025",
+    role: "Research Assistant",
+    organization: "Shanghai Jiao Tong University · Deng Zhijie Group",
+    summary:
+      "Developed an MCP-based multi-agent framework with task decomposition, dynamic tool routing and adaptive execution recovery.",
+  },
+  {
+    period: "Jun 2025 — Sep 2025",
+    role: "AI Engineer Intern",
+    organization: "Sheet0",
+    summary:
+      "Built configurable multi-agent data workflows, improving collection accuracy, fault tolerance and execution recovery.",
+  },
+];
 
-export default async function Page(props: {
-  params: Promise<{ locale: string }>;
-}) {
-  const params = await props.params;
-  const locale = params.locale || routing.defaultLocale;
-  const t = await getTranslations({ locale });
+const publications = [
+  {
+    title:
+      "SAHG: Sector-Anisotropic Hyperbolic Graph Model for Social Bot Detection",
+    venue: "Submitted to NeurIPS 2026 · Under review · First author",
+    href: "https://arxiv.org/abs/2605.30166",
+  },
+  {
+    title:
+      "VeriBot: Evidence-Routed Social Bot Detection with Auditable Decision Chains",
+    venue: "Submitted to AAAI 2027 · Under review · First author",
+  },
+  {
+    title:
+      "Agent-Agnostic End-to-End C/C++ Application Performance Optimization",
+    venue: "Published at ACM ICS 2026 Workshop · First author",
+    href: "https://doi.org/10.1145/3774895.3812199",
+  },
+  {
+    title: "BotRoute: Dual-Branch Selective Routing for Social Bot Detection",
+    venue: "Submitted to KDD 2027 · Under review",
+  },
+  {
+    title: "Hierarchy-Aware Sparse Autoencoders via Activation-Cone Routing",
+    venue: "Submitted to AAAI 2027 · Under review",
+  },
+  {
+    title:
+      "HCGM: Hyperbolic Code Graph Modeling for Repository-Level Software Intelligence",
+    venue: "Submitted to KDD 2027 · Under review",
+  },
+  {
+    title:
+      "FinHarness: An Inline Lifecycle Safety Harness for Finance LLM Agents",
+    venue: "Preprint · 2026",
+    href: "https://arxiv.org/abs/2605.27333",
+  },
+  {
+    title:
+      "Art and Science of Quantizing Large-Scale Models: A Comprehensive Overview",
+    venue: "Preprint · 2024",
+    href: "https://arxiv.org/abs/2409.11650",
+  },
+  {
+    title:
+      "Revision Propensity Is Not Revision Reliability: Ground-Truth-Conditioned Evaluation of Prompt Framing in LLM Cascades",
+    venue: "Preprint · 2026 · Co-first author",
+  },
+];
 
-  // Get data from i18n
-  const socialData = transformSocialData(
-    t.raw("social") as Record<
-      string,
-      {
-        name: string;
-        url: string;
-        icon: string;
-        navbar?: boolean;
-        content?: boolean;
-        footer?: boolean;
-      }
-    >,
-  );
-  // Helper function to safely get array fields
-  const getArrayField = <T,>(key: string): T[] => {
-    try {
-      const value = t.raw(key);
-      if (Array.isArray(value)) {
-        return value as T[];
-      }
-      return [];
-    } catch {
-      // If the key doesn't exist or any error occurs, return empty array
-      return [];
-    }
-  };
+const skills = [
+  "Python",
+  "C/C++",
+  "PyTorch",
+  "LLVM",
+  "CUDA",
+  "SGLang",
+  "LLM Agents",
+  "Graph ML",
+  "Efficient Inference",
+  "Nsight",
+];
 
-  const skills = getArrayField<string>("skills");
-  const reviewerConferences = getArrayField<string>("reviewerConferences");
-  const reviewerJournals = getArrayField<string>("reviewerJournals");
-
-  const personJsonLd = await generatePersonJsonLd(locale);
-
-  // Helper function to safely get collections items
-  const getCollectionItems = <T,>(key: string): T[] => {
-    try {
-      const parentKey = key.split(".")[0];
-      const collection = t.raw(parentKey) as
-        | { items?: T[] | undefined }
-        | undefined
-        | null;
-      // Check if collection exists and has items property that is an array
-      if (
-        collection &&
-        typeof collection === "object" &&
-        "items" in collection &&
-        Array.isArray(collection.items)
-      ) {
-        return collection.items as T[];
-      }
-      return [];
-    } catch {
-      // If the key doesn't exist or any error occurs, return empty array
-      return [];
-    }
-  };
-
-  // Get collections data and check if items are empty
-  const newsItems = getCollectionItems<{
-    date: string;
-    title: string;
-    content: string;
-  }>("news.items");
-  const projectsItems = getCollectionItems<{
-    title: string;
-    href?: string;
-    dates: string;
-    active: boolean;
-    description: string;
-    technologies: string[];
-    authors: string;
-    links?: Array<{ type: string; href: string; icon: string }>;
-    image?: string;
-    video?: string;
-  }>("projects.items");
-  const publicationsItems = getCollectionItems<{
-    title: string;
-    href?: string;
-    dates: string;
-    active: boolean;
-    description: string;
-    technologies: string[];
-    authors: string;
-    links?: Array<{ type: string; href: string; icon: string }>;
-    image?: string;
-    video?: string;
-  }>("publications.items");
-  const educationItems = getCollectionItems<{
-    school: string;
-    href: string;
-    degree: string;
-    logoUrl: string;
-    start: string;
-    end: string;
-  }>("education.items");
-  const workItems = getCollectionItems<{
-    company: string;
-    href: string;
-    badges: readonly string[];
-    location: string;
-    title: string;
-    logoUrl: string;
-    start: string;
-    end: string;
-    description: string;
-  }>("work.items");
-  const awardsItems = getCollectionItems<{
-    year: number;
-    title: string;
-  }>("awards.items");
-  const teachingItems = getCollectionItems<{
-    date: string;
-    title: string;
-    location: string;
-  }>("teaching.items");
-  const invitedTalksItems = getCollectionItems<{
-    host: string;
-    url: string;
-    date: string;
-    title: string;
-    logoUrl?: string;
-  }>("invitedTalks.items");
-
+export default function Page() {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-7xl flex-col space-y-8 px-6 py-8 pb-24 sm:space-y-10 sm:px-16 md:px-20 md:py-16 md:pt-14 lg:px-24 lg:py-20 xl:px-32 xl:py-24">
-      {/* Hero Section */}
-      <section id="hero" className="mt-16 sm:mt-28">
-        {jsonldScript(personJsonLd)}
-        <BlurFade delay={0}>
-          <Brief
-            name={t("name.full")}
-            firstName={t("name.given")}
-            surname={t("name.family")}
-            initials={t("name.initials")}
-            subtitle={t("subtitle")}
-            description={t("headline")}
-            avatarUrl={siteConfig.avatarUrl}
-            className="mx-auto w-full max-w-2xl space-y-8"
-            locale={locale}
-          />
-        </BlurFade>
-      </section>
+    <main>
+      <header className="site-header">
+        <a className="wordmark" href="#top" aria-label="Back to top">
+          HL<span>.</span>
+        </a>
+        <nav className="site-nav" aria-label="Primary navigation">
+          <a href="#experience">Experience</a>
+          <a href="#publications">Research</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
-      {/* Social Links Section */}
-      <section id="social">
-        <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <SocialLinks socials={socialData} />
-        </BlurFade>
-      </section>
-
-      {/* About Section */}
-      <section id="about">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">{t("sections.about")}</h2>
-        </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose text-muted-foreground dark:prose-invert max-w-full font-sans text-sm text-pretty [&_img]:my-0 [&_img]:inline-block [&_img]:h-[1em] [&_img]:w-auto [&_img]:align-baseline">
-            <CustomReactMarkdown>{t("bioMarkdown")}</CustomReactMarkdown>
-          </div>
-        </BlurFade>
-      </section>
-
-      {/* News Section */}
-      {newsItems && newsItems.length > 0 && (
-        <section id="news">
-          <NewsSection
-            news={newsItems}
-            delay={BLUR_FADE_DELAY * 5}
-            title={t("sections.news.title")}
-            showAllText={t("showAll")}
-          />
-        </section>
-      )}
-
-      {/* Projects Section */}
-      {projectsItems && projectsItems.length > 0 && (
-        <section id="projects">
-          <div className="w-full space-y-12 py-12">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="bg-foreground text-background inline-block rounded-lg px-3 py-1 text-sm">
-                  {t("sections.selectedProjects")}
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  {t("sections.checkOutLatestWork")}
-                </h2>
-              </div>
+      <div id="top" className="page-shell">
+        <section className="hero compact-hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow">AI systems researcher & engineer</p>
+            <h1 id="hero-title">
+              Hanning Lu <span>陆涵宁</span>
+            </h1>
+            <p className="hero-lede">
+              Computer Science student at the University of Leeds, working on
+              efficient inference, compiler optimization and graph machine
+              learning.
+            </p>
+            <div className="hero-links">
+              <a href="mailto:lhnjames@163.com">
+                <Mail aria-hidden="true" /> lhnjames@163.com
+              </a>
+              <span>
+                <MapPin aria-hidden="true" /> Leeds, United Kingdom
+              </span>
             </div>
-            <ProjectsSection
-              projects={projectsItems.map((project) => ({
-                ...project,
-                links: project.links?.map((link) => ({
-                  ...link,
-                  icon: getIconComponent(link.icon),
-                })),
-              }))}
-              delay={BLUR_FADE_DELAY * 3}
-              mobileDisplayCount={4}
-              desktopDisplayCount={3}
+          </div>
+
+          <figure className="portrait-wrap compact-portrait">
+            <Image
+              className="portrait"
+              src="/hanning-lu.jpg"
+              alt="Portrait of Hanning Lu"
+              width={1200}
+              height={1800}
+              priority
+              sizes="(max-width: 800px) 100vw, 34vw"
             />
+          </figure>
+        </section>
+
+        <section
+          className="fact-strip compact-facts"
+          aria-label="Profile highlights"
+        >
+          <div>
+            <strong>3.8 / 4.0</strong>
+            <span>GPA · Top 1%</span>
+          </div>
+          <div>
+            <strong>1.55×</strong>
+            <span>Average compiler speedup over -O3</span>
+          </div>
+          <div>
+            <strong>90%+</strong>
+            <span>Iterative IR decompilation accuracy</span>
           </div>
         </section>
-      )}
 
-      {/* Publications Section */}
-      {publicationsItems && publicationsItems.length > 0 && (
-        <section id="publications">
-          <div className="w-full space-y-12 py-12">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="bg-foreground text-background inline-block rounded-lg px-3 py-1 text-sm">
-                  {t("sections.research")}
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  {t("sections.publications.title")}
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("sections.viewFullPublications")}{" "}
-                  <Link
-                    href={socialData.GoogleScholar.url}
-                    className="text-foreground underline hover:no-underline"
-                    target="_blank"
-                  >
-                    {socialData.GoogleScholar.name}
-                  </Link>
-                </p>
-              </div>
+        <section
+          id="experience"
+          className="section-rule compact-section"
+          aria-labelledby="experience-title"
+        >
+          <div className="section-heading">
+            <div className="section-label">
+              <span>01</span>
+              <h2 id="experience-title">Experience</h2>
             </div>
-            <ProjectsSection
-              projects={publicationsItems.map((project) => ({
-                ...project,
-                links: project.links?.map((link) => ({
-                  ...link,
-                  icon: getIconComponent(link.icon),
-                })),
-              }))}
-              delay={BLUR_FADE_DELAY * 3}
-              mobileDisplayCount={6}
-              desktopDisplayCount={6}
-              showAllText={t("showAll")}
-            />
+          </div>
+          <div className="timeline compact-timeline">
+            {experience.map((item) => (
+              <article
+                className="timeline-item"
+                key={`${item.organization}-${item.period}`}
+              >
+                <p className="timeline-period">{item.period}</p>
+                <div>
+                  <p className="timeline-org">{item.organization}</p>
+                  <h3>{item.role}</h3>
+                  <p>{item.summary}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
-      )}
 
-      {/* Skills Section */}
-      {Array.isArray(skills) && skills.length > 0 && (
-        <section id="skills">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <h2 className="text-xl font-bold">{t("sections.skills")}</h2>
-            <Skills skills={skills} />
+        <section
+          id="publications"
+          className="section-rule compact-section"
+          aria-labelledby="publications-title"
+        >
+          <div className="section-heading">
+            <div className="section-label">
+              <span>02</span>
+              <h2 id="publications-title">Selected publications</h2>
+            </div>
+          </div>
+          <div className="publication-list">
+            {publications.map((publication) => {
+              const content = (
+                <>
+                  <span>
+                    <strong>{publication.title}</strong>
+                    <small>{publication.venue}</small>
+                  </span>
+                  {publication.href ? (
+                    <ArrowUpRight aria-hidden="true" />
+                  ) : (
+                    <span />
+                  )}
+                </>
+              );
+              return publication.href ? (
+                <a
+                  className="publication-row compact-publication"
+                  href={publication.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={publication.title}
+                >
+                  {content}
+                </a>
+              ) : (
+                <div
+                  className="publication-row compact-publication"
+                  key={publication.title}
+                >
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </section>
-      )}
 
-      {/* Education Section */}
-      {educationItems && educationItems.length > 0 && (
-        <section id="education">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <h2 className="text-xl font-bold">{t("sections.education")}</h2>
-            <Education educations={educationItems} />
+        <section className="two-column section-rule compact-section">
+          <div>
+            <div className="section-label compact-label">
+              <span>03</span>
+              <h2>Education</h2>
+            </div>
+            <div className="simple-block">
+              <p className="timeline-org">University of Leeds · 2024–2027</p>
+              <h3>BSc Computer Science</h3>
+              <p>GPA 3.8/4.0 · Top 1% of the programme</p>
+            </div>
+          </div>
+
+          <div>
+            <div className="section-label compact-label">
+              <span>04</span>
+              <h2>Skills</h2>
+            </div>
+            <div className="skill-tags">
+              {skills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
+            </div>
           </div>
         </section>
-      )}
 
-      {/* Work Section */}
-      {Array.isArray(workItems) && workItems.length > 0 && (
-        <section id="work">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <h2 className="text-xl font-bold">
-              {t("sections.workExperience")}
-            </h2>
-            <Work work={workItems} />
-          </div>
+        <section className="honours-row" aria-label="Awards">
+          <span>Honours</span>
+          <p>
+            CCPC 2024 Gold Medal · ICPC Xi&apos;an Invitational Silver Medal ·
+            Team captain
+          </p>
         </section>
-      )}
 
-      {/* Awards Section */}
-      {awardsItems && awardsItems.length > 0 && (
-        <section id="awards">
-          <h2 className="text-xl font-bold">{t("sections.awards")}</h2>
-          <AwardsSection awards={awardsItems} showAllText={t("showAll")} />
+        <section
+          id="contact"
+          className="contact-section compact-contact"
+          aria-labelledby="contact-title"
+        >
+          <p className="eyebrow">Contact</p>
+          <h2 id="contact-title">
+            Research, systems, or a good technical problem?
+          </h2>
+          <a href="mailto:lhnjames@163.com">
+            lhnjames@163.com <ArrowUpRight aria-hidden="true" />
+          </a>
         </section>
-      )}
 
-      {/* Academic Services Section */}
-      {((Array.isArray(reviewerConferences) &&
-        reviewerConferences.length > 0) ||
-        (Array.isArray(reviewerJournals) && reviewerJournals.length > 0) ||
-        (Array.isArray(teachingItems) && teachingItems.length > 0)) && (
-        <section id="academic-services">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <h2 className="text-xl font-bold">
-              {t("sections.academicServices")}
-            </h2>
-            <Services
-              reviewerConferences={reviewerConferences}
-              reviewerJournals={reviewerJournals}
-              teaching={teachingItems}
-              reviewerConferencesLabel={t(
-                "sections.teaching.reviewerConferencesLabel",
-              )}
-              reviewerJournalsLabel={t(
-                "sections.teaching.reviewerJournalsLabel",
-              )}
-              teachingLabel={t("sections.teaching.teachingLabel")}
-            />
-          </div>
-        </section>
-      )}
-
-      {/* Invited Talks Section */}
-      {invitedTalksItems && invitedTalksItems.length > 0 && (
-        <section id="invited-talks">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <h2 className="text-xl font-bold">
-              {t("sections.invitedTalks.title")}
-            </h2>
-            <Talks talks={invitedTalksItems} showAllText={t("showAll")} />
-          </div>
-        </section>
-      )}
-
-      {/* Contact Section */}
-      <section id="contact">
-        <div className="grid w-full items-center justify-center gap-4 px-4 py-12 text-center md:px-6">
-          <Contact
-            emailUrl={socialData.email.url}
-            calendlyUrl={socialData.calendly?.url}
-            contactLabel={t("sections.contact")}
-            getInTouch={t("sections.getInTouch")}
-            contactDescription={t("sections.contactDescription")}
-            viaEmail={t("sections.viaEmail")}
-            askQuestions={t("sections.askQuestions")}
-            exploreCollaboration={t("sections.exploreCollaboration")}
-            coffeeChat={t("sections.coffeeChat")}
-            schedule={t("sections.schedule")}
-          />
-        </div>
-      </section>
+        <footer className="site-footer">
+          <p>© 2026 Hanning Lu · 陆涵宁</p>
+          <a href="#top">Back to top ↑</a>
+        </footer>
+      </div>
     </main>
   );
 }
