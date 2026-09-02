@@ -9,16 +9,16 @@ export default function manifest(): MetadataRoute.Manifest {
     description: enMessages.headline.replace(/\n/g, ", "),
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#000000",
+    background_color: "#f4f0e7",
+    theme_color: "#0b514b",
     orientation: "portrait-primary",
     scope: "/",
     lang: "en",
     icons: [
       {
-        src: "/favicon.ico",
+        src: "/icon.svg",
         sizes: "any",
-        type: "image/x-icon",
+        type: "image/svg+xml",
       },
     ],
   };
