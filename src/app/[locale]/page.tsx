@@ -156,6 +156,10 @@ export default function Page() {
               efficient inference, compiler optimization and graph machine
               learning.
             </p>
+            <p className="phd-status">
+              <span aria-hidden="true" /> Currently seeking PhD opportunities
+              for 2027 entry.
+            </p>
             <div className="hero-links">
               <a href="mailto:lhnjames@163.com">
                 <Mail aria-hidden="true" /> lhnjames@163.com

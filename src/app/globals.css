@@ -120,6 +120,22 @@ a {
   font-size: clamp(1.12rem, 2vw, 1.45rem);
   line-height: 1.48;
 }
+.phd-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 22px 0 0;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+.phd-status span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(15, 107, 99, 0.12);
+}
 .hero-links {
   display: flex;
   flex-wrap: wrap;
