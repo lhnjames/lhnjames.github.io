@@ -682,6 +682,63 @@ a.publication-row:hover {
   padding-top: 24px;
   padding-bottom: 24px;
 }
+.research-priority-list {
+  border-top: 1px solid var(--ink);
+}
+.research-featured-item {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 36px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.research-featured-item h3,
+.research-secondary-item h3 {
+  margin: 3px 0 7px;
+  font-family: var(--display);
+  letter-spacing: -0.025em;
+}
+.research-featured-item h3 {
+  font-size: 1.3rem;
+}
+.research-featured-item p:last-child {
+  max-width: 900px;
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.62;
+}
+.research-secondary {
+  margin-top: 34px;
+}
+.research-secondary-label {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.research-secondary-item {
+  display: grid;
+  grid-template-columns: 150px 250px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  padding: 17px 0;
+  border-top: 1px solid var(--line);
+}
+.research-secondary-item h3 {
+  font-size: 1rem;
+}
+.research-secondary-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+.research-secondary-item .timeline-org {
+  font-size: 0.65rem;
+}
 .collaboration-line {
   margin: 20px 0 0;
   color: var(--muted);
@@ -702,6 +759,12 @@ a.publication-row:hover {
 .simple-block {
   padding-top: 18px;
   border-top: 1px solid var(--ink);
+}
+.education-record {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr auto;
+  gap: 32px;
+  align-items: baseline;
 }
 .simple-block h3 {
   margin: 4px 0;
@@ -773,6 +836,21 @@ a.publication-row:hover {
   .compact-section {
     padding-top: 58px;
     padding-bottom: 58px;
+  }
+  .research-featured-item,
+  .research-secondary-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .research-featured-item {
+    padding: 24px 0;
+  }
+  .research-secondary-item {
+    padding: 16px 0;
+  }
+  .education-record {
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
   .compact-publication {
     grid-template-columns: 30px minmax(0, 1fr) 18px;

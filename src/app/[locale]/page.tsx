@@ -27,29 +27,32 @@ const researchExperience = [
     organization: "University of Leeds",
     group: "Distributed Computing Group",
     summary:
-      "Developed LLM-driven compiler systems, reaching 90%+ IR decompilation accuracy and up to 16.7× program speedup.",
-  },
-  {
-    period: "Jun 2024 — Jun 2025",
-    role: "Research Assistant",
-    organization: "School of Computer Science, Peking University",
-    group: "Yang Tong Group",
-    summary:
-      "Proposed dynamic KV-cache compression, achieving 70% compression on LongBench with only 1% performance loss.",
+      "First-authored the published ICS 2026 workshop paper on agent-agnostic C/C++ optimization; developed LLM-driven compiler systems with 90%+ IR decompilation accuracy and up to 16.7× program speedup.",
+    featured: true,
   },
   {
     period: "Oct 2025 — Jul 2026",
     role: "Research Assistant",
     organization: "National Engineering Laboratory, Peking University",
-    group: "Chong Bin Group",
+    group: "Bin Chong Group",
     summary:
-      "Designed adaptive hyperbolic graph models and auditable evidence chains for social-bot detection.",
+      "Led first-author work on SAHG and VeriBot, under review at NeurIPS 2026 and AAAI 2027, and contributed to BotRoute, under review at KDD 2027.",
+    featured: true,
+  },
+  {
+    period: "Jun 2024 — Jun 2025",
+    role: "Research Assistant",
+    organization: "School of Computer Science, Peking University",
+    group: "Tong Yang Group",
+    summary:
+      "Proposed dynamic KV-cache compression, achieving 70% compression on LongBench with only 1% performance loss.",
+    featured: true,
   },
   {
     period: "Jun 2025 — Aug 2025",
     role: "Research Assistant",
     organization: "Shanghai Jiao Tong University",
-    group: "Deng Zhijie Group",
+    group: "Zhijie Deng Group",
     summary:
       "Developed an MCP-based multi-agent framework with task decomposition, dynamic tool routing and adaptive execution recovery.",
   },
@@ -57,7 +60,7 @@ const researchExperience = [
     period: "Jun 2025 — Aug 2025",
     role: "Research Assistant",
     organization: "Tsinghua University",
-    group: "Wei Jun Group",
+    group: "Jun Wei Group",
     summary:
       "Built knowledge-graph reasoning and multi-hop QA systems, and deployed low-latency LLM and streaming-TTS services for real-time voice interaction.",
   },
@@ -65,7 +68,7 @@ const researchExperience = [
     period: "Sep 2025 — Feb 2026",
     role: "Research Assistant",
     organization: "Westlake University",
-    group: "Li Ziqing Group",
+    group: "Ziqing Li Group",
     summary:
       "Developed hierarchical generative representations for single-cell data using vector quantization, tree routing and diffusion models.",
   },
@@ -73,7 +76,7 @@ const researchExperience = [
     period: "May 2026 — Sep 2026",
     role: "Research Assistant",
     organization: "HKUST (Guangzhou)",
-    group: "Yang Menglin Group",
+    group: "Menglin Yang Group",
     summary:
       "Studied Loop Transformers and recurrent computation in Llama-3-8B through hidden-state dynamics and controlled cross-task evaluation.",
   },
@@ -129,19 +132,6 @@ const publications = [
   },
 ];
 
-const skills = [
-  "Python",
-  "C/C++",
-  "PyTorch",
-  "LLVM",
-  "CUDA",
-  "SGLang",
-  "LLM Agents",
-  "Graph ML",
-  "Efficient Inference",
-  "Nsight",
-];
-
 export default function Page() {
   return (
     <main>
@@ -150,6 +140,7 @@ export default function Page() {
           HL<span>.</span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
+          <a href="#education">Education</a>
           <a href="#publications">Publications</a>
           <a href="#internships">Internships</a>
           <a href="#research-experience">Research</a>
@@ -221,13 +212,31 @@ export default function Page() {
         </section>
 
         <section
+          id="education"
+          className="section-rule compact-section"
+          aria-labelledby="education-title"
+        >
+          <div className="section-heading">
+            <div className="section-label">
+              <span>01</span>
+              <h2 id="education-title">Education</h2>
+            </div>
+          </div>
+          <div className="simple-block education-record">
+            <p className="timeline-org">University of Leeds · 2024–2027</p>
+            <h3>BSc Computer Science</h3>
+            <p>GPA 3.8/4.0 · Top 1% of the programme</p>
+          </div>
+        </section>
+
+        <section
           id="publications"
           className="section-rule compact-section"
           aria-labelledby="publications-title"
         >
           <div className="section-heading">
             <div className="section-label">
-              <span>01</span>
+              <span>02</span>
               <h2 id="publications-title">Publications</h2>
             </div>
             <p>All 9 papers · submitted, published and preprint work</p>
@@ -279,7 +288,7 @@ export default function Page() {
         >
           <div className="section-heading">
             <div className="section-label">
-              <span>02</span>
+              <span>03</span>
               <h2 id="internships-title">Internships</h2>
             </div>
           </div>
@@ -307,51 +316,48 @@ export default function Page() {
         >
           <div className="section-heading">
             <div className="section-label">
-              <span>03</span>
+              <span>04</span>
               <h2 id="research-experience-title">Research experience</h2>
             </div>
           </div>
-          <div className="timeline compact-timeline">
-            {researchExperience.map((item) => (
-              <article
-                className="timeline-item"
-                key={`${item.organization}-${item.period}`}
-              >
-                <p className="timeline-period">{item.period}</p>
-                <div>
-                  <p className="timeline-org">{item.organization}</p>
-                  <h3>{item.group}</h3>
-                  <p className="timeline-role">{item.role}</p>
-                  <p>{item.summary}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="two-column section-rule compact-section">
-          <div>
-            <div className="section-label compact-label">
-              <span>04</span>
-              <h2>Education</h2>
-            </div>
-            <div className="simple-block">
-              <p className="timeline-org">University of Leeds · 2024–2027</p>
-              <h3>BSc Computer Science</h3>
-              <p>GPA 3.8/4.0 · Top 1% of the programme</p>
-            </div>
-          </div>
-
-          <div>
-            <div className="section-label compact-label">
-              <span>05</span>
-              <h2>Skills</h2>
-            </div>
-            <div className="skill-tags">
-              {skills.map((skill) => (
-                <span key={skill}>{skill}</span>
+          <div className="research-priority-list">
+            {researchExperience
+              .filter((item) => item.featured)
+              .map((item) => (
+                <article
+                  className="research-featured-item"
+                  key={`${item.organization}-${item.period}`}
+                >
+                  <p className="timeline-period">{item.period}</p>
+                  <div>
+                    <p className="timeline-org">{item.organization}</p>
+                    <h3>{item.group}</h3>
+                    <p className="timeline-role">{item.role}</p>
+                    <p>{item.summary}</p>
+                  </div>
+                </article>
               ))}
-            </div>
+          </div>
+
+          <div className="research-secondary">
+            <p className="research-secondary-label">
+              Additional research collaborations
+            </p>
+            {researchExperience
+              .filter((item) => !item.featured)
+              .map((item) => (
+                <article
+                  className="research-secondary-item"
+                  key={`${item.organization}-${item.period}`}
+                >
+                  <p className="timeline-period">{item.period}</p>
+                  <div>
+                    <h3>{item.group}</h3>
+                    <p className="timeline-org">{item.organization}</p>
+                  </div>
+                  <p>{item.summary}</p>
+                </article>
+              ))}
           </div>
         </section>
 

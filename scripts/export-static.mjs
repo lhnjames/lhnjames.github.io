@@ -40,7 +40,7 @@ for (const asset of ["hanning-lu.jpg", "og.png"]) {
   await cp(path.join(root, "public", asset), path.join(outputDirectory, asset));
 }
 
-for (const icon of ["icon.png", "favicon.ico", "apple-icon.png"]) {
+for (const icon of ["icon.svg"]) {
   await cp(
     path.join(root, "src", "app", icon),
     path.join(outputDirectory, icon),
