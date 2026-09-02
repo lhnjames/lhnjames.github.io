@@ -120,6 +120,13 @@ a {
   font-size: clamp(1.12rem, 2vw, 1.45rem);
   line-height: 1.48;
 }
+.hero-summary {
+  max-width: 680px;
+  margin: 17px 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
 .phd-status {
   display: flex;
   align-items: center;
@@ -136,27 +143,36 @@ a {
   background: var(--accent);
   box-shadow: 0 0 0 4px rgba(15, 107, 99, 0.12);
 }
-.hero-links {
+.hero-socials {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 22px;
+  gap: 10px;
   margin-top: 28px;
-  color: var(--muted);
-  font-size: 0.84rem;
 }
-.hero-links a,
-.hero-links span {
-  display: inline-flex;
+.hero-socials a {
+  display: grid;
+  width: 42px;
+  height: 42px;
   align-items: center;
-  gap: 7px;
+  justify-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
 }
-.hero-links svg {
-  width: 15px;
-  height: 15px;
-  color: var(--accent);
+.hero-socials svg {
+  width: 18px;
+  height: 18px;
 }
-.hero-links a:hover {
-  color: var(--accent);
+.hero-socials a:hover,
+.hero-socials a:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--paper);
 }
 .hero-actions {
   display: flex;
@@ -548,7 +564,9 @@ a.publication-row:hover {
   .hero-copy .eyebrow,
   .hero-copy h1,
   .hero-copy .hero-lede,
-  .hero-copy .hero-links,
+  .hero-copy .hero-summary,
+  .hero-copy .phd-status,
+  .hero-copy .hero-socials,
   .hero-copy .hero-actions {
     grid-column: 1;
   }
@@ -569,12 +587,20 @@ a.publication-row:hover {
     margin-top: -10px;
     font-size: 1.18rem;
   }
-  .hero-copy .hero-links {
+  .hero-copy .hero-summary {
     order: 5;
+    margin-top: -16px;
+  }
+  .hero-copy .phd-status {
+    order: 6;
+    margin-top: -8px;
+  }
+  .hero-copy .hero-socials {
+    order: 7;
     margin-top: -8px;
   }
   .hero-copy .hero-actions {
-    order: 6;
+    order: 8;
     margin-top: -12px;
   }
   .portrait {

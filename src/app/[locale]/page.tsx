@@ -1,5 +1,7 @@
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+
+import { Icons } from "@/components/icons";
 
 const internships = [
   {
@@ -151,33 +153,56 @@ export default function Page() {
           <a href="#publications">Publications</a>
           <a href="#internships">Internships</a>
           <a href="#research-experience">Research</a>
-          <a href="#contact">Contact</a>
         </nav>
       </header>
 
       <div id="top" className="page-shell">
         <section className="hero compact-hero" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">AI systems researcher & engineer</p>
+            <p className="eyebrow">Hello, I&apos;m</p>
             <h1 id="hero-title">
               Hanning Lu <span>陆涵宁</span>
             </h1>
             <p className="hero-lede">
-              Computer Science student at the University of Leeds, working on
-              efficient inference, compiler optimization and graph machine
-              learning.
+              I am an undergraduate Computer Science student in the School of
+              Computing at the University of Leeds, graduating in 2027.
+            </p>
+            <p className="hero-summary">
+              My research focuses on AI systems, compiler optimization,
+              efficient model inference and graph machine learning. I currently
+              have first-author work under review at NeurIPS 2026 and AAAI 2027,
+              with collaborative work under review at KDD 2027.
             </p>
             <p className="phd-status">
               <span aria-hidden="true" /> Currently seeking direct-entry PhD
               opportunities starting in September 2027.
             </p>
-            <div className="hero-links">
-              <a href="mailto:lhnjames@163.com">
-                <Mail aria-hidden="true" /> lhnjames@163.com
+            <div className="hero-socials" aria-label="Profile links">
+              <a
+                href="https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Google Scholar"
+                title="Google Scholar"
+              >
+                <Icons.googlescholar aria-hidden="true" />
               </a>
-              <span>
-                <MapPin aria-hidden="true" /> Leeds, United Kingdom
-              </span>
+              <a
+                href="https://github.com/lhnjames"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <Icons.github aria-hidden="true" />
+              </a>
+              <a
+                href="mailto:lhnjames@163.com"
+                aria-label="Email Hanning Lu"
+                title="Email"
+              >
+                <Icons.email aria-hidden="true" />
+              </a>
             </div>
           </div>
 
@@ -332,18 +357,6 @@ export default function Page() {
             <p>CCPC 2024 · Gold Medal · Team Captain</p>
             <p>ICPC Xi&apos;an Invitational · Silver Medal · Team Captain</p>
           </div>
-        </section>
-
-        <section
-          id="contact"
-          className="contact-section compact-contact"
-          aria-labelledby="contact-title"
-        >
-          <h2 id="contact-title">Contact</h2>
-          <p>PhD opportunities and research collaborations.</p>
-          <a href="mailto:lhnjames@163.com">
-            lhnjames@163.com <ArrowUpRight aria-hidden="true" />
-          </a>
         </section>
 
         <footer className="site-footer">
