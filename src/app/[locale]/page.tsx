@@ -38,7 +38,7 @@ const researchExperience = [
     organization: "National Engineering Laboratory, Peking University",
     group: "Bin Chong Group",
     summary:
-      "Led first-author work on SAHG and VeriBot, under review at NeurIPS 2026 and AAAI 2027, and contributed to BotRoute, under review at KDD 2027.",
+      "Led first-author work on SAHG and VeriBot and contributed to BotRoute; all three manuscripts are under submission.",
     featured: true,
   },
   {
@@ -89,13 +89,13 @@ const publications = [
   {
     title:
       "SAHG: Sector-Anisotropic Hyperbolic Graph Model for Social Bot Detection",
-    venue: "Under review at NeurIPS 2026 · First author",
+    venue: "Under submission · First author",
     href: "https://arxiv.org/abs/2605.30166",
   },
   {
     title:
       "VeriBot: Evidence-Routed Social Bot Detection with Auditable Decision Chains",
-    venue: "Under review at AAAI 2027 · First author",
+    venue: "Under submission · First author",
   },
   {
     title:
@@ -105,16 +105,16 @@ const publications = [
   },
   {
     title: "BotRoute: Dual-Branch Selective Routing for Social Bot Detection",
-    venue: "Under review at KDD 2027",
+    venue: "Under submission",
   },
   {
     title: "Hierarchy-Aware Sparse Autoencoders via Activation-Cone Routing",
-    venue: "Under review at AAAI 2027",
+    venue: "Under submission",
   },
   {
     title:
       "HCGM: Hyperbolic Code Graph Modeling for Repository-Level Software Intelligence",
-    venue: "Under review at KDD 2027",
+    venue: "Under submission",
   },
   {
     title:
@@ -182,8 +182,8 @@ export default function Page() {
             <p className="hero-summary">
               My research focuses on AI systems, compiler optimization,
               efficient model inference and graph machine learning. I currently
-              have first-author work under review at NeurIPS 2026 and AAAI 2027,
-              with collaborative work under review at KDD 2027.
+              have multiple first-author and collaborative manuscripts under
+              submission.
             </p>
             <p className="phd-status">
               <span aria-hidden="true" /> Currently seeking direct-entry PhD
