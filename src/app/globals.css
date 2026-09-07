@@ -136,6 +136,58 @@ h2 {
 .paper-title {
   font-weight: 600;
 }
+.illustrated-work {
+  display: grid;
+  grid-template-columns: 166px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+.papers li.illustrated-work {
+  margin-bottom: 19px;
+}
+.work-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.project-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.research-records .record-heading {
+  flex-wrap: wrap;
+  gap: 2px 12px;
+}
+.work-links {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.records {
+  row-gap: 20px;
+}
+@media (max-width: 650px) {
+  .illustrated-work {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+  .illustrated-work .record-heading {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 420px) {
+  .illustrated-work {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .work-diagram {
+    width: 156px;
+  }
+}
 .paper-meta {
   color: #626262;
   font-size: 13px;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { WorkDiagram, type DiagramSpec } from "@/components/work-diagram";
 
 import { Icons } from "@/components/icons";
 
@@ -134,6 +135,140 @@ const publications = [
   },
 ];
 
+const paperDiagrams: DiagramSpec[] = [
+  {
+    label: "Social graph → hyperbolic representation → bot detection",
+    steps: ["Graph", "Hyperbolic", "Detect"],
+    icons: ["graph", "layers", "search"],
+    theme: "purple",
+  },
+  {
+    label: "Evidence → decision chain → auditable verdict",
+    steps: ["Evidence", "Chain", "Audit"],
+    icons: ["text", "route", "check"],
+    theme: "green",
+  },
+  {
+    label: "C/C++ program → agent optimization → performance evaluation",
+    steps: ["C/C++", "Optimize", "Evaluate"],
+    icons: ["code", "agent", "speed"],
+    theme: "blue",
+  },
+  {
+    label: "Social signals → dual-branch routing → bot detection",
+    steps: ["Signals", "Dual route", "Detect"],
+    icons: ["graph", "route", "search"],
+    theme: "purple",
+  },
+  {
+    label: "Activations → cone routing → sparse features",
+    steps: ["Activations", "Cone route", "Features"],
+    icons: ["layers", "route", "bits"],
+    theme: "purple",
+  },
+  {
+    label: "Repository → hyperbolic code graph → software intelligence",
+    steps: ["Code", "Graph", "Analysis"],
+    icons: ["code", "graph", "search"],
+    theme: "blue",
+  },
+  {
+    label: "Finance agent → risk monitoring → verification",
+    steps: ["Agent", "Monitor", "Verify"],
+    icons: ["agent", "guard", "check"],
+    theme: "green",
+  },
+  {
+    label: "Large model → quantization methods → low-bit representation",
+    steps: ["Model", "Quantize", "Low-bit"],
+    icons: ["layers", "bits", "gpu"],
+    theme: "blue",
+  },
+  {
+    label: "Prompt framing → model revision → ground-truth evaluation",
+    steps: ["Prompt", "Revision", "Evaluate"],
+    icons: ["text", "loop", "eval"],
+    theme: "green",
+  },
+];
+const projectDetails: Record<
+  string,
+  { title: string; diagram: DiagramSpec; code?: string }
+> = {
+  "Distributed Computing Group": {
+    title: "LLM-Driven Compiler Optimization",
+    diagram: {
+      label:
+        "LLM-Driven Compiler Optimization: Program → LLM passes → Evaluate",
+      steps: ["Program", "LLM passes", "Evaluate"],
+      icons: ["code", "agent", "speed"],
+      theme: "blue",
+    },
+    code: "https://github.com/lhnjames/accelerate_pass",
+  },
+  "Bin Chong Group": {
+    title: "Graph Learning for Social Bot Detection",
+    diagram: {
+      label:
+        "Graph Learning for Social Bot Detection: Social data → Graph model → Detect",
+      steps: ["Social data", "Graph model", "Detect"],
+      icons: ["data", "graph", "search"],
+      theme: "purple",
+    },
+    code: "https://github.com/lhnjames/SAHG",
+  },
+  "Tong Yang Group": {
+    title: "Dynamic KV-Cache Compression",
+    diagram: {
+      label: "Dynamic KV-Cache Compression: KV cache → Compress → Inference",
+      steps: ["KV cache", "Compress", "Inference"],
+      icons: ["data", "bits", "gpu"],
+      theme: "blue",
+    },
+  },
+  "Menglin Yang Group": {
+    title: "Loop Transformers & Recurrent Computation",
+    diagram: {
+      label:
+        "Loop Transformers & Recurrent Computation: Hidden state → Recur → Evaluate",
+      steps: ["Hidden state", "Recur", "Evaluate"],
+      icons: ["layers", "loop", "eval"],
+      theme: "purple",
+    },
+  },
+  "Zhijie Deng Group": {
+    title: "MCP Agent: Tool Planning & Scheduling",
+    diagram: {
+      label:
+        "MCP Agent: Tool Planning & Scheduling: Task → Plan tools → Execute",
+      steps: ["Task", "Plan tools", "Execute"],
+      icons: ["text", "route", "tools"],
+      theme: "green",
+    },
+    code: "https://github.com/hanwenxu1/mcp-agent",
+  },
+  "Jun Wei Group": {
+    title: "Knowledge-Graph Reasoning & Real-Time LLM Serving",
+    diagram: {
+      label:
+        "Knowledge-Graph Reasoning & Real-Time LLM Serving: Query → Reason → Respond",
+      steps: ["Query", "Reason", "Respond"],
+      icons: ["text", "graph", "voice"],
+      theme: "green",
+    },
+  },
+  "Ziqing Li Group": {
+    title: "Hierarchical Generative Models for Single-Cell Data",
+    diagram: {
+      label:
+        "Hierarchical Generative Models for Single-Cell Data: Cell data → Hierarchy → Generate",
+      steps: ["Cell data", "Hierarchy", "Generate"],
+      icons: ["data", "route", "layers"],
+      theme: "purple",
+    },
+  },
+};
+
 export default function Page() {
   const orderedPapers = [
     publications[2],
@@ -239,15 +374,24 @@ export default function Page() {
         <h2>Publications</h2>
         <ol className="papers">
           {orderedPapers.map((paper) => (
-            <li key={paper.title}>
-              {paper.href ? (
-                <a className="paper-title" href={paper.href}>
-                  {paper.title}
-                </a>
-              ) : (
-                <span className="paper-title">{paper.title}</span>
-              )}
-              <div className="paper-meta">{paper.venue}</div>
+            <li key={paper.title} className="illustrated-work">
+              <WorkDiagram {...paperDiagrams[publications.indexOf(paper)]} />
+              <div>
+                {paper.href ? (
+                  <a className="paper-title" href={paper.href}>
+                    {paper.title}
+                  </a>
+                ) : (
+                  <span className="paper-title">{paper.title}</span>
+                )}
+                <div className="paper-meta">{paper.venue}</div>
+                <div className="work-links">
+                  {paper.href && <a href={paper.href}>Paper</a>}
+                  {paper === publications[0] && (
+                    <a href="https://github.com/lhnjames/SAHG">Code</a>
+                  )}
+                </div>
+              </div>
             </li>
           ))}
         </ol>
@@ -256,19 +400,38 @@ export default function Page() {
         <h2>Internships</h2>
         <div className="records">
           {internships.map((item) => (
-            <article key={item.organization}>
-              <div className="record-heading">
-                <strong>
-                  <a href={item.href}>{item.organization}</a>
-                </strong>
-                <span className="date">{item.period}</span>
+            <article key={item.organization} className="illustrated-work">
+              <WorkDiagram
+                {...((item.organization === "Sheet0"
+                  ? {
+                      label:
+                        "Multi-agent data workflows: task to agents to data",
+                      steps: ["Task", "Agents", "Data"],
+                      icons: ["text", "agent", "data"],
+                      theme: "green",
+                    }
+                  : {
+                      label:
+                        "Diffusion serving: model to GPU optimization to video",
+                      steps: ["Diffusion", "GPU serving", "Video"],
+                      icons: ["layers", "gpu", "layers"],
+                      theme: "blue",
+                    }) as DiagramSpec)}
+              />
+              <div>
+                <div className="record-heading">
+                  <strong>
+                    <a href={item.href}>{item.organization}</a>
+                  </strong>
+                  <span className="date">{item.period}</span>
+                </div>
+                <p className="record-detail">{item.role}</p>
+                <p>
+                  {item.organization === "Sheet0"
+                    ? "Multi-agent data workflows, fault tolerance and execution recovery."
+                    : "SGLang diffusion serving, quantization and GPU optimization."}
+                </p>
               </div>
-              <p className="record-detail">{item.role}</p>
-              <p>
-                {item.organization === "Sheet0"
-                  ? "Multi-agent data workflows, fault tolerance and execution recovery."
-                  : "SGLang diffusion serving, quantization and GPU optimization."}
-              </p>
             </article>
           ))}
         </div>
@@ -277,13 +440,31 @@ export default function Page() {
         <h2>Research Experience</h2>
         <div className="records research-records">
           {groups.map((item) => (
-            <article key={item.group}>
-              <div className="record-heading">
-                <strong>{item.group}</strong>
-                <span className="date">{item.period}</span>
+            <article key={item.group} className="illustrated-work">
+              <WorkDiagram {...projectDetails[item.group].diagram} />
+              <div>
+                <div className="record-heading">
+                  <h3 className="project-title">
+                    {projectDetails[item.group].title}
+                  </h3>
+                  <span className="date">{item.period}</span>
+                </div>
+                <p className="record-detail">
+                  {item.group} · {item.organization}
+                </p>
+                <p>{topics[item.group]}</p>
+                {projectDetails[item.group].code && (
+                  <div className="work-links">
+                    <a href={projectDetails[item.group].code}>
+                      {item.group === "Distributed Computing Group"
+                        ? "Related code"
+                        : item.group === "Bin Chong Group"
+                          ? "SAHG code"
+                          : "Code"}
+                    </a>
+                  </div>
+                )}
               </div>
-              <p className="record-detail">{item.organization}</p>
-              <p>{topics[item.group]}</p>
             </article>
           ))}
         </div>
