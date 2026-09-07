@@ -57,6 +57,14 @@ h1 span {
   margin-left: 9px;
   font-weight: 400;
 }
+.profile-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #626262;
+}
 .header-links {
   display: flex;
   align-items: center;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MapPin } from "lucide-react";
 import { PaperSummary } from "@/components/paper-summary";
 import { WorkIllustration } from "@/components/work-illustration";
 
@@ -11,7 +12,7 @@ const internships = [
     organization: "Sheet0",
     href: "https://www.sheet0.com/",
     summary:
-      "Built configurable multi-agent data workflows, improving collection accuracy, fault tolerance and execution recovery.",
+      "Designed and optimized multi-agent coordination to improve data-collection accuracy and runtime stability. Built configurable task-scheduling and execution workflows that strengthened fault tolerance and recovery in complex scenarios.",
   },
   {
     period: "Jun 2026 — Sep 2026",
@@ -19,7 +20,7 @@ const internships = [
     organization: "Xingjie Intelligence",
     href: "https://www.frame-x.ai/",
     summary:
-      "Building SGLang-based diffusion-model serving with parallelism, quantization and GPU performance optimization.",
+      "Developed SGLang-based serving infrastructure for Wan-series diffusion models, combining tensor, pipeline and sequence parallelism with KV caching and block-wise autoregressive generation. Profiled GPU bottlenecks with Nsight and PyTorch Profiler, and evaluated quantization, CUDA Graph, kernel fusion, continuous batching and streaming inference across throughput, latency, memory use and scaling efficiency.",
   },
 ];
 
@@ -217,19 +218,28 @@ export default function Page() {
       "Built a closed-loop compiler agent that plans, executes, profiles and revises optimization actions using runtime feedback and correctness checks, achieving a 2.25× geometric-mean speedup over -O3 on PolyBench. Improved LLVM IR decompilation accuracy from approximately 50% to over 90% through iterative LLM self-correction. This work includes a first-author ICS 2026 workshop paper and a co-first-author study separating revision propensity from revision reliability in LLM cascades.",
     "Bin Chong Group":
       "Developed adaptive hyperbolic graph models for social bot detection, improving Weibo accuracy from 89.0% to 91.5%. Post-trained Qwen3-0.6B with LoRA-SFT and Active-GRPO to support grounded reasoning, and built an auditable framework with evidence tracing and conflict-aware abstention. The work achieved 98.9% and 98.8% accuracy on Fox8-23 and BotSim-24 and includes first-author SAHG and VeriBot manuscripts under submission.",
-    "Tong Yang Group": "Developed adaptive token retention across attention heads and decoding stages, achieving 70% KV-cache compression with approximately 1% performance loss on Llama-2-7B / LongBench. Explored quantization, pruning and sparse-weight inference for lower-memory, lower-latency deployment, contributing to a model-quantization survey. Also built a context-aware retrieval and controlled-generation pipeline.",
-    "Menglin Yang Group": "Studied recurrent computation in frozen LLMs and identified high local redundancy and rapid output saturation. Across diverse tasks and experimental settings, deeper frozen loops produced no stable gains beyond noise. The findings point to learned, task-aligned updates as the key to effective recurrent computation.",
+    "Tong Yang Group":
+      "Developed adaptive token retention across attention heads and decoding stages, achieving 70% KV-cache compression with approximately 1% performance loss on Llama-2-7B / LongBench. Explored quantization, pruning and sparse-weight inference for lower-memory, lower-latency deployment, contributing to a model-quantization survey. Also built a context-aware retrieval and controlled-generation pipeline.",
+    "Menglin Yang Group":
+      "Studied recurrent computation in frozen LLMs and identified high local redundancy and rapid output saturation. Across diverse tasks and experimental settings, deeper frozen loops produced no stable gains beyond noise. The findings point to learned, task-aligned updates as the key to effective recurrent computation.",
     "Zhijie Deng Group":
       "Contributed to TPS-Bench, an MCP-based benchmark and agent framework for task decomposition, tool selection and coordinated multi-step execution. Improved planning reliability and fault recovery through adaptive tool reselection, execution scheduling and aggregation of intermediate results. The implementation is available on GitHub.",
-    "Jun Wei Group": "Built multi-hop knowledge-graph reasoning for complex question answering using structured graph traversal and cross-node evidence aggregation. Integrated LLM inference, incremental generation, streaming text-to-speech and audio delivery into an end-to-end pipeline for low-latency voice interaction.",
-    "Ziqing Li Group": "Developed hierarchical generative models for single-cell data, achieving a Core4 score of 0.966 in fate-tree reconstruction at 42,000 cells with stable scaling. Recovered ground-truth lineage structure in C. elegans with temporal fidelity above 0.95. The model outperformed the evaluated generative baselines, reaching 93.5% diversity and an FID of 10.4; a manuscript is in preparation.",
+    "Jun Wei Group":
+      "Built multi-hop knowledge-graph reasoning for complex question answering using structured graph traversal and cross-node evidence aggregation. Integrated LLM inference, incremental generation, streaming text-to-speech and audio delivery into an end-to-end pipeline for low-latency voice interaction.",
+    "Ziqing Li Group":
+      "Developed hierarchical generative models for single-cell data, achieving a Core4 score of 0.966 in fate-tree reconstruction at 42,000 cells with stable scaling. Recovered ground-truth lineage structure in C. elegans with temporal fidelity above 0.95. The model outperformed the evaluated generative baselines, reaching 93.5% diversity and an FID of 10.4; a manuscript is in preparation.",
   };
   return (
     <main className="academic-page" id="top">
       <header className="academic-header">
-        <h1>
-          Hanning Lu <span>陆涵宁</span>
-        </h1>
+        <div>
+          <h1>
+            Hanning Lu <span>陆涵宁</span>
+          </h1>
+          <p className="profile-location">
+            <MapPin aria-hidden="true" size={14} /> Leeds, UK
+          </p>
+        </div>
         <div className="header-links">
           <a
             href="https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en"
@@ -347,11 +357,7 @@ export default function Page() {
                   <span className="date">{item.period}</span>
                 </div>
                 <p className="record-detail">{item.role}</p>
-                <p>
-                  {item.organization === "Sheet0"
-                    ? "Multi-agent data workflows, fault tolerance and execution recovery."
-                    : "SGLang diffusion serving, quantization and GPU optimization."}
-                </p>
+                <p>{item.summary}</p>
               </div>
             </article>
           ))}
@@ -379,9 +385,7 @@ export default function Page() {
                 <p>{topics[item.group]}</p>
                 {projectDetails[item.group].code && (
                   <div className="work-links">
-                    <a href={projectDetails[item.group].code}>
-                      Code
-                    </a>
+                    <a href={projectDetails[item.group].code}>Code</a>
                   </div>
                 )}
               </div>
