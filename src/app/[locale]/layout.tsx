@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
-  title: "Hanning Lu · MLSys & Agents",
+  title: "Hanning Lu",
   description:
     "Hanning Lu studies ML systems and AI agents at the University of Leeds. Seeking direct-entry PhD opportunities for September 2027.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "AI agents",
   ],
   openGraph: {
-    title: "Hanning Lu · MLSys & Agents",
+    title: "Hanning Lu",
     description:
       "ML systems and AI agents: efficient inference, compiler optimization and reliable tool use.",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hanning Lu · MLSys & Agents",
+    title: "Hanning Lu",
     description:
       "ML systems and AI agents: efficient inference, compiler optimization and reliable tool use.",
     images: ["/og.png"],
