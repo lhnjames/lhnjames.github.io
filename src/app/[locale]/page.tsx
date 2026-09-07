@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
 import { Icons } from "@/components/icons";
@@ -136,271 +135,167 @@ const publications = [
 ];
 
 export default function Page() {
+  const orderedPapers = [
+    publications[2],
+    publications[6],
+    publications[7],
+    publications[8],
+    publications[0],
+    publications[1],
+    publications[3],
+    publications[4],
+    publications[5],
+  ];
+  const groups = [
+    ...researchExperience.filter((item) => item.featured),
+    ...researchExperience.filter((item) => !item.featured),
+  ];
+  const topics: Record<string, string> = {
+    "Distributed Computing Group":
+      "LLM-driven compiler optimization; first-author ICS workshop paper.",
+    "Bin Chong Group":
+      "Graph learning and evidence-based detection; SAHG and VeriBot (first author), BotRoute, all under submission.",
+    "Tong Yang Group": "Efficient inference and dynamic KV-cache compression.",
+    "Menglin Yang Group": "Loop Transformers and recurrent computation.",
+    "Zhijie Deng Group":
+      "MCP-based agents, tool routing and execution recovery.",
+    "Jun Wei Group": "Knowledge-graph reasoning and real-time LLM serving.",
+    "Ziqing Li Group": "Hierarchical generative models for single-cell data.",
+  };
   return (
-    <main>
-      <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Back to top">
-          Hanning Lu
-        </a>
-        <nav className="site-nav" aria-label="Primary navigation">
-          <a className="nav-section" href="#education">
-            Education
-          </a>
-          <a className="nav-section" href="#publications">
-            Publications
-          </a>
-          <a className="nav-section" href="#internships">
-            Internships
-          </a>
-          <a className="nav-section" href="#research-experience">
-            Research
+    <main className="academic-page" id="top">
+      <header className="academic-header">
+        <h1>
+          Hanning Lu <span>陆涵宁</span>
+        </h1>
+        <div className="header-links">
+          <a
+            href="https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en"
+            aria-label="Google Scholar"
+            title="Google Scholar"
+          >
+            <Icons.googlescholar aria-hidden="true" />
           </a>
           <a
-            className="nav-action nav-resume"
-            href="/Hanning_Lu_CV.pdf"
-            download="Hanning_Lu_CV.pdf"
+            href="https://github.com/lhnjames"
+            aria-label="GitHub"
+            title="GitHub"
           >
+            <Icons.github aria-hidden="true" />
+          </a>
+          <a href="mailto:lhnjames@163.com" aria-label="Email" title="Email">
+            <Icons.email aria-hidden="true" />
+          </a>
+          <a className="resume-link" href="/Hanning_Lu_CV.pdf" download>
             Resume
           </a>
-          <a className="nav-action nav-contact" href="mailto:lhnjames@163.com">
+          <a className="contact-link" href="mailto:lhnjames@163.com">
             Contact
           </a>
-        </nav>
+        </div>
       </header>
-
-      <div id="top" className="page-shell">
-        <section className="hero compact-hero" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow">Hello, I&apos;m</p>
-            <h1 id="hero-title">
-              Hanning Lu <span>陆涵宁</span>
-            </h1>
-            <p className="hero-lede">
-              I am an undergraduate Computer Science student in the School of
-              Computing at the University of Leeds, graduating in 2027.
-            </p>
-            <p className="hero-summary">
-              My research focuses on AI systems, compiler optimization,
-              efficient model inference and graph machine learning. I currently
-              have multiple first-author and collaborative manuscripts under
-              submission.
-            </p>
-            <p className="phd-status">
-              <span aria-hidden="true" /> Currently seeking direct-entry PhD
-              opportunities starting in September 2027.
-            </p>
-            <div className="hero-socials" aria-label="Profile links">
-              <a
-                href="https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Google Scholar"
-                title="Google Scholar"
-              >
-                <Icons.googlescholar aria-hidden="true" />
-              </a>
-              <a
-                href="https://github.com/lhnjames"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                title="GitHub"
-              >
-                <Icons.github aria-hidden="true" />
-              </a>
-              <a
-                href="mailto:lhnjames@163.com"
-                aria-label="Email Hanning Lu"
-                title="Email"
-              >
-                <Icons.email aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-
-          <figure className="portrait-wrap compact-portrait">
-            <Image
-              className="portrait"
-              src="/hanning-lu.jpg"
-              alt="Portrait of Hanning Lu"
-              width={1200}
-              height={1800}
-              priority
-              unoptimized
-              sizes="(max-width: 800px) 100vw, 34vw"
-            />
-          </figure>
-        </section>
-
-        <section
-          id="education"
-          className="section-rule compact-section"
-          aria-labelledby="education-title"
-        >
-          <div className="section-heading">
-            <div className="section-label">
-              <span>01</span>
-              <h2 id="education-title">Education</h2>
-            </div>
-          </div>
-          <div className="simple-block education-record">
-            <p className="timeline-org">University of Leeds · 2024–2027</p>
-            <h3>BSc Computer Science</h3>
-            <p>GPA 3.8/4.0 · Top 1% of the programme</p>
-          </div>
-        </section>
-
-        <section
-          id="publications"
-          className="section-rule compact-section"
-          aria-labelledby="publications-title"
-        >
-          <div className="section-heading">
-            <div className="section-label">
-              <span>02</span>
-              <h2 id="publications-title">Publications</h2>
-            </div>
-          </div>
-          <div className="publication-list">
-            {publications.map((publication, index) => {
-              const content = (
-                <>
-                  <span className="publication-index" aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span>
-                    <strong>{publication.title}</strong>
-                    <small>{publication.venue}</small>
-                  </span>
-                  {publication.href ? (
-                    <ArrowUpRight aria-hidden="true" />
-                  ) : (
-                    <span />
-                  )}
-                </>
-              );
-              return publication.href ? (
-                <a
-                  className="publication-row compact-publication"
-                  href={publication.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={publication.title}
-                >
-                  {content}
+      <section className="intro" aria-label="About me">
+        <div>
+          <p>
+            Hello! I am an undergraduate in the School of Computing at the{" "}
+            <strong>University of Leeds</strong>, graduating in 2027.
+          </p>
+          <p>
+            I work on <strong>ML Systems (MLSys)</strong> and{" "}
+            <strong>AI Agents</strong>: making models run efficiently and
+            building agents that use tools reliably.
+          </p>
+          <p>
+            My work spans compiler optimization, efficient inference and agent
+            workflows, including a first-author ICS 2026 workshop paper and
+            manuscripts under submission.
+          </p>
+          <p className="phd-note">
+            I am seeking direct-entry PhD opportunities starting in{" "}
+            <strong>September 2027</strong>.
+          </p>
+        </div>
+        <Image
+          className="profile-photo"
+          src="/hanning-lu.jpg"
+          alt="Hanning Lu"
+          width={1200}
+          height={1800}
+          priority
+          unoptimized
+        />
+      </section>
+      <section id="education">
+        <h2>Education</h2>
+        <div className="record-heading">
+          <strong>University of Leeds</strong>
+          <span className="date">2024–2027</span>
+        </div>
+        <p className="record-detail">
+          BSc Computer Science · GPA 3.8/4.0 · Top 1%
+        </p>
+      </section>
+      <section id="publications">
+        <h2>Publications</h2>
+        <ol className="papers">
+          {orderedPapers.map((paper) => (
+            <li key={paper.title}>
+              {paper.href ? (
+                <a className="paper-title" href={paper.href}>
+                  {paper.title}
                 </a>
               ) : (
-                <div
-                  className="publication-row compact-publication"
-                  key={publication.title}
-                >
-                  {content}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        <section
-          id="internships"
-          className="section-rule compact-section"
-          aria-labelledby="internships-title"
-        >
-          <div className="section-heading">
-            <div className="section-label">
-              <span>03</span>
-              <h2 id="internships-title">Internships</h2>
-            </div>
-          </div>
-          <div className="timeline compact-timeline">
-            {internships.map((item) => (
-              <article
-                className="timeline-item"
-                key={`${item.organization}-${item.period}`}
-              >
-                <p className="timeline-period">{item.period}</p>
-                <div>
-                  <a
-                    className="timeline-org timeline-org-link"
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {item.organization}
-                  </a>
-                  <h3>{item.role}</h3>
-                  <p>{item.summary}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="research-experience"
-          className="section-rule compact-section"
-          aria-labelledby="research-experience-title"
-        >
-          <div className="section-heading">
-            <div className="section-label">
-              <span>04</span>
-              <h2 id="research-experience-title">Research experience</h2>
-            </div>
-          </div>
-          <div className="research-priority-list">
-            {researchExperience
-              .filter((item) => item.featured)
-              .map((item) => (
-                <article
-                  className="research-featured-item"
-                  key={`${item.organization}-${item.period}`}
-                >
-                  <p className="timeline-period">{item.period}</p>
-                  <div>
-                    <p className="timeline-org">{item.organization}</p>
-                    <h3>{item.group}</h3>
-                    <p className="timeline-role">{item.role}</p>
-                    <p>{item.summary}</p>
-                  </div>
-                </article>
-              ))}
-          </div>
-
-          <div className="research-secondary">
-            <p className="research-secondary-label">
-              Additional research collaborations
-            </p>
-            {researchExperience
-              .filter((item) => !item.featured)
-              .map((item) => (
-                <article
-                  className="research-secondary-item"
-                  key={`${item.organization}-${item.period}`}
-                >
-                  <p className="timeline-period">{item.period}</p>
-                  <div>
-                    <h3>{item.group}</h3>
-                    <p className="timeline-org">{item.organization}</p>
-                  </div>
-                  <p>{item.summary}</p>
-                </article>
-              ))}
-          </div>
-        </section>
-
-        <section className="honours-row" aria-label="Awards">
-          <span>Honours</span>
-          <div>
-            <p>CCPC 2024 · Gold Medal · Team Captain</p>
-            <p>ICPC Xi&apos;an Invitational · Silver Medal · Team Captain</p>
-          </div>
-        </section>
-
-        <footer className="site-footer">
-          <p>© 2026 Hanning Lu · 陆涵宁</p>
-          <a href="#top">Back to top ↑</a>
-        </footer>
-      </div>
+                <span className="paper-title">{paper.title}</span>
+              )}
+              <div className="paper-meta">{paper.venue}</div>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <section id="internships">
+        <h2>Internships</h2>
+        <div className="records">
+          {internships.map((item) => (
+            <article key={item.organization}>
+              <div className="record-heading">
+                <strong>
+                  <a href={item.href}>{item.organization}</a>
+                </strong>
+                <span className="date">{item.period}</span>
+              </div>
+              <p className="record-detail">{item.role}</p>
+              <p>
+                {item.organization === "Sheet0"
+                  ? "Multi-agent data workflows, fault tolerance and execution recovery."
+                  : "SGLang diffusion serving, quantization and GPU optimization."}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section id="research-experience">
+        <h2>Research Experience</h2>
+        <div className="records research-records">
+          {groups.map((item) => (
+            <article key={item.group}>
+              <div className="record-heading">
+                <strong>{item.group}</strong>
+                <span className="date">{item.period}</span>
+              </div>
+              <p className="record-detail">{item.organization}</p>
+              <p>{topics[item.group]}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="honours">
+        <h2>Honours</h2>
+        <p>CCPC 2024 · Gold Medal · Team Captain</p>
+        <p>ICPC Xi&apos;an Invitational · Silver Medal · Team Captain</p>
+      </section>
+      <footer>
+        © 2026 Hanning Lu <a href="#top">Back to top ↑</a>
+      </footer>
     </main>
   );
 }

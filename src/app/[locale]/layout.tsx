@@ -9,36 +9,36 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
-  title: "Hanning Lu · AI Systems Researcher",
+  title: "Hanning Lu · MLSys & Agents",
   description:
-    "Hanning Lu is a Computer Science student and AI systems researcher working on efficient inference, compiler optimization and graph machine learning.",
+    "Hanning Lu studies ML systems and AI agents at the University of Leeds. Seeking direct-entry PhD opportunities for September 2027.",
   keywords: [
     "Hanning Lu",
     "陆涵宁",
     "AI systems",
     "compiler optimization",
     "efficient inference",
-    "graph machine learning",
+    "AI agents",
   ],
   openGraph: {
-    title: "Hanning Lu · AI Systems Researcher",
+    title: "Hanning Lu · MLSys & Agents",
     description:
-      "Efficient inference, compiler optimization and graph machine learning.",
+      "ML systems and AI agents: efficient inference, compiler optimization and reliable tool use.",
     type: "website",
     images: [
       {
         url: "/og.png",
         width: 1729,
         height: 910,
-        alt: "Hanning Lu — AI Systems, Compiler Optimization, Graph ML",
+        alt: "Hanning Lu — MLSys and AI Agents",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hanning Lu · AI Systems Researcher",
+    title: "Hanning Lu · MLSys & Agents",
     description:
-      "Efficient inference, compiler optimization and graph machine learning.",
+      "ML systems and AI agents: efficient inference, compiler optimization and reliable tool use.",
     images: ["/og.png"],
   },
 };
