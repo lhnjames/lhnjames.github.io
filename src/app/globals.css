@@ -138,17 +138,20 @@ h2 {
 }
 .illustrated-work {
   display: grid;
-  grid-template-columns: 166px minmax(0, 1fr);
+  grid-template-columns: 180px minmax(0, 1fr);
   gap: 20px;
   align-items: center;
 }
 .papers li.illustrated-work {
   margin-bottom: 19px;
 }
-.work-diagram {
+.work-illustration {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 5px;
 }
 .project-title {
   margin: 0;
@@ -184,7 +187,7 @@ h2 {
     grid-template-columns: 1fr;
     gap: 8px;
   }
-  .work-diagram {
+  .work-illustration {
     width: 156px;
   }
 }

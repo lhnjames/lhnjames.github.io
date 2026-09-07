@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { WorkDiagram, type DiagramSpec } from "@/components/work-diagram";
+import { WorkIllustration } from "@/components/work-illustration";
 
 import { Icons } from "@/components/icons";
 
@@ -56,7 +56,7 @@ const researchExperience = [
     organization: "Shanghai Jiao Tong University",
     group: "Zhijie Deng Group",
     summary:
-      "Developed an MCP-based multi-agent framework with task decomposition, dynamic tool routing and adaptive execution recovery.",
+      "Developed TPS-Bench to evaluate AI agents' tool planning and scheduling on multi-step, multi-tool tasks.",
   },
   {
     period: "Jun 2025 — Aug 2025",
@@ -135,137 +135,51 @@ const publications = [
   },
 ];
 
-const paperDiagrams: DiagramSpec[] = [
-  {
-    label: "Social graph → hyperbolic representation → bot detection",
-    steps: ["Graph", "Hyperbolic", "Detect"],
-    icons: ["graph", "layers", "search"],
-    theme: "purple",
-  },
-  {
-    label: "Evidence → decision chain → auditable verdict",
-    steps: ["Evidence", "Chain", "Audit"],
-    icons: ["text", "route", "check"],
-    theme: "green",
-  },
-  {
-    label: "C/C++ program → agent optimization → performance evaluation",
-    steps: ["C/C++", "Optimize", "Evaluate"],
-    icons: ["code", "agent", "speed"],
-    theme: "blue",
-  },
-  {
-    label: "Social signals → dual-branch routing → bot detection",
-    steps: ["Signals", "Dual route", "Detect"],
-    icons: ["graph", "route", "search"],
-    theme: "purple",
-  },
-  {
-    label: "Activations → cone routing → sparse features",
-    steps: ["Activations", "Cone route", "Features"],
-    icons: ["layers", "route", "bits"],
-    theme: "purple",
-  },
-  {
-    label: "Repository → hyperbolic code graph → software intelligence",
-    steps: ["Code", "Graph", "Analysis"],
-    icons: ["code", "graph", "search"],
-    theme: "blue",
-  },
-  {
-    label: "Finance agent → risk monitoring → verification",
-    steps: ["Agent", "Monitor", "Verify"],
-    icons: ["agent", "guard", "check"],
-    theme: "green",
-  },
-  {
-    label: "Large model → quantization methods → low-bit representation",
-    steps: ["Model", "Quantize", "Low-bit"],
-    icons: ["layers", "bits", "gpu"],
-    theme: "blue",
-  },
-  {
-    label: "Prompt framing → model revision → ground-truth evaluation",
-    steps: ["Prompt", "Revision", "Evaluate"],
-    icons: ["text", "loop", "eval"],
-    theme: "green",
-  },
+const paperArtwork = [
+  "sahg",
+  "veribot",
+  "compiler",
+  "botroute",
+  "sparse",
+  "hcgm",
+  "finharness",
+  "quantization",
+  "revision",
 ];
 const projectDetails: Record<
   string,
-  { title: string; diagram: DiagramSpec; code?: string }
+  { title: string; artwork: string; code?: string }
 > = {
   "Distributed Computing Group": {
     title: "LLM-Driven Compiler Optimization",
-    diagram: {
-      label:
-        "LLM-Driven Compiler Optimization: Program → LLM passes → Evaluate",
-      steps: ["Program", "LLM passes", "Evaluate"],
-      icons: ["code", "agent", "speed"],
-      theme: "blue",
-    },
+    artwork: "compiler",
     code: "https://github.com/lhnjames/accelerate_pass",
   },
   "Bin Chong Group": {
     title: "Graph Learning for Social Bot Detection",
-    diagram: {
-      label:
-        "Graph Learning for Social Bot Detection: Social data → Graph model → Detect",
-      steps: ["Social data", "Graph model", "Detect"],
-      icons: ["data", "graph", "search"],
-      theme: "purple",
-    },
+    artwork: "sahg",
     code: "https://github.com/lhnjames/SAHG",
   },
   "Tong Yang Group": {
     title: "Dynamic KV-Cache Compression",
-    diagram: {
-      label: "Dynamic KV-Cache Compression: KV cache → Compress → Inference",
-      steps: ["KV cache", "Compress", "Inference"],
-      icons: ["data", "bits", "gpu"],
-      theme: "blue",
-    },
+    artwork: "kv",
   },
   "Menglin Yang Group": {
     title: "Loop Transformers & Recurrent Computation",
-    diagram: {
-      label:
-        "Loop Transformers & Recurrent Computation: Hidden state → Recur → Evaluate",
-      steps: ["Hidden state", "Recur", "Evaluate"],
-      icons: ["layers", "loop", "eval"],
-      theme: "purple",
-    },
+    artwork: "loop",
   },
   "Zhijie Deng Group": {
-    title: "MCP Agent: Tool Planning & Scheduling",
-    diagram: {
-      label:
-        "MCP Agent: Tool Planning & Scheduling: Task → Plan tools → Execute",
-      steps: ["Task", "Plan tools", "Execute"],
-      icons: ["text", "route", "tools"],
-      theme: "green",
-    },
+    title: "TPS-Bench: Tool Planning & Scheduling for AI Agents",
+    artwork: "tps",
     code: "https://github.com/hanwenxu1/mcp-agent",
   },
   "Jun Wei Group": {
     title: "Knowledge-Graph Reasoning & Real-Time LLM Serving",
-    diagram: {
-      label:
-        "Knowledge-Graph Reasoning & Real-Time LLM Serving: Query → Reason → Respond",
-      steps: ["Query", "Reason", "Respond"],
-      icons: ["text", "graph", "voice"],
-      theme: "green",
-    },
+    artwork: "reasoning",
   },
   "Ziqing Li Group": {
     title: "Hierarchical Generative Models for Single-Cell Data",
-    diagram: {
-      label:
-        "Hierarchical Generative Models for Single-Cell Data: Cell data → Hierarchy → Generate",
-      steps: ["Cell data", "Hierarchy", "Generate"],
-      icons: ["data", "route", "layers"],
-      theme: "purple",
-    },
+    artwork: "cells",
   },
 };
 
@@ -293,7 +207,7 @@ export default function Page() {
     "Tong Yang Group": "Efficient inference and dynamic KV-cache compression.",
     "Menglin Yang Group": "Loop Transformers and recurrent computation.",
     "Zhijie Deng Group":
-      "MCP-based agents, tool routing and execution recovery.",
+      "Evaluating agents' tool selection, task decomposition and execution scheduling on multi-step tasks.",
     "Jun Wei Group": "Knowledge-graph reasoning and real-time LLM serving.",
     "Ziqing Li Group": "Hierarchical generative models for single-cell data.",
   };
@@ -375,7 +289,10 @@ export default function Page() {
         <ol className="papers">
           {orderedPapers.map((paper) => (
             <li key={paper.title} className="illustrated-work">
-              <WorkDiagram {...paperDiagrams[publications.indexOf(paper)]} />
+              <WorkIllustration
+                name={paperArtwork[publications.indexOf(paper)]}
+                alt={paper.title}
+              />
               <div>
                 {paper.href ? (
                   <a className="paper-title" href={paper.href}>
@@ -401,22 +318,9 @@ export default function Page() {
         <div className="records">
           {internships.map((item) => (
             <article key={item.organization} className="illustrated-work">
-              <WorkDiagram
-                {...((item.organization === "Sheet0"
-                  ? {
-                      label:
-                        "Multi-agent data workflows: task to agents to data",
-                      steps: ["Task", "Agents", "Data"],
-                      icons: ["text", "agent", "data"],
-                      theme: "green",
-                    }
-                  : {
-                      label:
-                        "Diffusion serving: model to GPU optimization to video",
-                      steps: ["Diffusion", "GPU serving", "Video"],
-                      icons: ["layers", "gpu", "layers"],
-                      theme: "blue",
-                    }) as DiagramSpec)}
+              <WorkIllustration
+                name={item.organization === "Sheet0" ? "sheet" : "diffusion"}
+                alt={`${item.organization} research illustration`}
               />
               <div>
                 <div className="record-heading">
@@ -441,7 +345,10 @@ export default function Page() {
         <div className="records research-records">
           {groups.map((item) => (
             <article key={item.group} className="illustrated-work">
-              <WorkDiagram {...projectDetails[item.group].diagram} />
+              <WorkIllustration
+                name={projectDetails[item.group].artwork}
+                alt={projectDetails[item.group].title}
+              />
               <div>
                 <div className="record-heading">
                   <h3 className="project-title">

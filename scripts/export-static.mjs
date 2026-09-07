@@ -40,6 +40,12 @@ for (const asset of ["hanning-lu.jpg", "og.png", "Hanning_Lu_CV.pdf"]) {
   await cp(path.join(root, "public", asset), path.join(outputDirectory, asset));
 }
 
+await cp(
+  path.join(root, "public", "research-art"),
+  path.join(outputDirectory, "research-art"),
+  { recursive: true },
+);
+
 for (const icon of ["icon.svg"]) {
   await cp(
     path.join(root, "src", "app", icon),
