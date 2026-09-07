@@ -153,6 +153,32 @@ h2 {
   object-fit: cover;
   border-radius: 5px;
 }
+.paper-tldr {
+  margin-top: 5px;
+  font-size: 13px;
+}
+.paper-tldr summary {
+  display: list-item;
+  width: fit-content;
+  padding: 2px 7px;
+  color: #176b99;
+  border: 1px solid #c8dbe5;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.paper-tldr summary:hover,
+.paper-tldr summary:focus-visible {
+  background: #eff6fa;
+}
+.paper-tldr p {
+  margin: 7px 0 0;
+  color: #454545;
+  line-height: 1.5;
+}
+.papers li.illustrated-work {
+  align-items: start;
+}
 .project-title {
   margin: 0;
   font-size: 15px;

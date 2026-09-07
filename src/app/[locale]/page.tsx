@@ -135,6 +135,18 @@ const publications = [
   },
 ];
 
+const paperTldr = [
+  "We propose SAHG, a sector-anisotropic hyperbolic graph model for detecting social bots by revealing anisotropic geometric signatures induced by semantic camouflage and coordinated behavior.",
+  "VeriBot makes graph-based social bot detection auditable by constructing source-grounded evidence chains and abstaining when independently trained detector branches disagree.",
+  "An agent-agnostic approach to end-to-end C/C++ application performance optimization.",
+  "BotRoute keeps a graph detector as the default and selectively hands disagreement cases to complementary experts, using predicted utility and structural reliability to make more reliable social bot detection decisions.",
+  "The Hyperbolic Sparse Autoencoder (HypSAE) framework embeds latent features into hyperbolic space to better capture hierarchical relationships in neural network concepts that standard Euclidean sparse autoencoders often fail to represent.",
+  "HCGM introduces a hyperbolic code graph model that captures repository structure for better code retrieval and generation.",
+  "An inline safety harness for finance LLM agents that monitors queries and tool calls during execution to block prompt-injection attacks while preserving legitimate workflows.",
+  "A comprehensive overview of large-model quantization, comparing post-training quantization and quantization-aware training methods that reduce memory and computation costs while preserving accuracy.",
+  "LLM cascades' revision rate and revision correctness are decoupled: prompt framing controls how often Stage 2 revises, but not whether those revisions help or hurt.",
+];
+
 const paperArtwork = [
   "sahg",
   "veribot",
@@ -308,6 +320,12 @@ export default function Page() {
                     <a href="https://github.com/lhnjames/SAHG">Code</a>
                   )}
                 </div>
+                <details className="paper-tldr">
+                  <summary aria-label={`TL;DR for ${paper.title}`}>
+                    TL;DR
+                  </summary>
+                  <p>{paperTldr[publications.indexOf(paper)]}</p>
+                </details>
               </div>
             </li>
           ))}
