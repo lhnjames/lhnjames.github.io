@@ -214,15 +214,15 @@ export default function Page() {
   ];
   const topics: Record<string, string> = {
     "Distributed Computing Group":
-      "LLM-driven compiler optimization; first-author ICS workshop paper.",
+      "Built a closed-loop compiler agent that plans, executes, profiles and revises optimization actions using runtime feedback and correctness checks, achieving a 2.25× geometric-mean speedup over -O3 on PolyBench. Improved LLVM IR decompilation accuracy from approximately 50% to over 90% through iterative LLM self-correction. This work includes a first-author ICS 2026 workshop paper and a co-first-author study separating revision propensity from revision reliability in LLM cascades.",
     "Bin Chong Group":
-      "Graph learning and evidence-based detection; SAHG and VeriBot (first author), BotRoute, all under submission.",
-    "Tong Yang Group": "Efficient inference and dynamic KV-cache compression.",
-    "Menglin Yang Group": "Loop Transformers and recurrent computation.",
+      "Developed adaptive hyperbolic graph models for social bot detection, improving Weibo accuracy from 89.0% to 91.5%. Post-trained Qwen3-0.6B with LoRA-SFT and Active-GRPO to support grounded reasoning, and built an auditable framework with evidence tracing and conflict-aware abstention. The work achieved 98.9% and 98.8% accuracy on Fox8-23 and BotSim-24 and includes first-author SAHG and VeriBot manuscripts under submission.",
+    "Tong Yang Group": "Developed adaptive token retention across attention heads and decoding stages, achieving 70% KV-cache compression with approximately 1% performance loss on Llama-2-7B / LongBench. Explored quantization, pruning and sparse-weight inference for lower-memory, lower-latency deployment, contributing to a model-quantization survey. Also built a context-aware retrieval and controlled-generation pipeline.",
+    "Menglin Yang Group": "Studied recurrent computation in frozen LLMs and identified high local redundancy and rapid output saturation. Across diverse tasks and experimental settings, deeper frozen loops produced no stable gains beyond noise. The findings point to learned, task-aligned updates as the key to effective recurrent computation.",
     "Zhijie Deng Group":
-      "Evaluating agents' tool selection, task decomposition and execution scheduling on multi-step tasks.",
-    "Jun Wei Group": "Knowledge-graph reasoning and real-time LLM serving.",
-    "Ziqing Li Group": "Hierarchical generative models for single-cell data.",
+      "Contributed to TPS-Bench, an MCP-based benchmark and agent framework for task decomposition, tool selection and coordinated multi-step execution. Improved planning reliability and fault recovery through adaptive tool reselection, execution scheduling and aggregation of intermediate results. The implementation is available on GitHub.",
+    "Jun Wei Group": "Built multi-hop knowledge-graph reasoning for complex question answering using structured graph traversal and cross-node evidence aggregation. Integrated LLM inference, incremental generation, streaming text-to-speech and audio delivery into an end-to-end pipeline for low-latency voice interaction.",
+    "Ziqing Li Group": "Developed hierarchical generative models for single-cell data, achieving a Core4 score of 0.966 in fate-tree reconstruction at 42,000 cells with stable scaling. Recovered ground-truth lineage structure in C. elegans with temporal fidelity above 0.95. The model outperformed the evaluated generative baselines, reaching 93.5% diversity and an FID of 10.4; a manuscript is in preparation.",
   };
   return (
     <main className="academic-page" id="top">
