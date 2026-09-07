@@ -153,12 +153,9 @@ h2 {
   object-fit: cover;
   border-radius: 5px;
 }
-.paper-tldr {
-  margin-top: 5px;
-  font-size: 13px;
-}
-.paper-tldr summary {
-  display: list-item;
+.tldr-toggle {
+  background: white;
+  font-family: inherit;
   width: fit-content;
   padding: 2px 7px;
   color: #176b99;
@@ -167,11 +164,12 @@ h2 {
   cursor: pointer;
   font-size: 12px;
 }
-.paper-tldr summary:hover,
-.paper-tldr summary:focus-visible {
+.tldr-toggle:hover,
+.tldr-toggle:focus-visible {
   background: #eff6fa;
 }
-.paper-tldr p {
+.tldr-text {
+  flex-basis: 100%;
   margin: 7px 0 0;
   color: #454545;
   line-height: 1.5;
@@ -191,6 +189,8 @@ h2 {
 }
 .work-links {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
   font-size: 13px;
   margin-top: 4px;

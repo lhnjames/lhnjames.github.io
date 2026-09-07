@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PaperSummary } from "@/components/paper-summary";
 import { WorkIllustration } from "@/components/work-illustration";
 
 import { Icons } from "@/components/icons";
@@ -319,13 +320,11 @@ export default function Page() {
                   {paper === publications[0] && (
                     <a href="https://github.com/lhnjames/SAHG">Code</a>
                   )}
+                  <PaperSummary
+                    title={paper.title}
+                    text={paperTldr[publications.indexOf(paper)]}
+                  />
                 </div>
-                <details className="paper-tldr">
-                  <summary aria-label={`TL;DR for ${paper.title}`}>
-                    TL;DR
-                  </summary>
-                  <p>{paperTldr[publications.indexOf(paper)]}</p>
-                </details>
               </div>
             </li>
           ))}
@@ -375,17 +374,13 @@ export default function Page() {
                   <span className="date">{item.period}</span>
                 </div>
                 <p className="record-detail">
-                  {item.group} · {item.organization}
+                  {item.role} · {item.group} · {item.organization}
                 </p>
                 <p>{topics[item.group]}</p>
                 {projectDetails[item.group].code && (
                   <div className="work-links">
                     <a href={projectDetails[item.group].code}>
-                      {item.group === "Distributed Computing Group"
-                        ? "Related code"
-                        : item.group === "Bin Chong Group"
-                          ? "SAHG code"
-                          : "Code"}
+                      Code
                     </a>
                   </div>
                 )}
