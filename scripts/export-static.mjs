@@ -41,8 +41,8 @@ for (const asset of ["hanning-lu.jpg", "og.png", "Hanning_Lu_CV.pdf"]) {
 }
 
 await cp(
-  path.join(root, "public", "research-art"),
-  path.join(outputDirectory, "research-art"),
+  path.join(root, "public", "research-sketches"),
+  path.join(outputDirectory, "research-sketches"),
   { recursive: true },
 );
 
