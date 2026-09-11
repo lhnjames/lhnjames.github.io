@@ -5,6 +5,56 @@ import { WorkIllustration } from "@/components/work-illustration";
 
 import { Icons } from "@/components/icons";
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://lhnjames.github.io/#website",
+      url: "https://lhnjames.github.io/",
+      name: "Hanning Lu",
+      publisher: { "@id": "https://lhnjames.github.io/#person" },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://lhnjames.github.io/#profile",
+      url: "https://lhnjames.github.io/",
+      name: "Hanning Lu",
+      mainEntity: { "@id": "https://lhnjames.github.io/#person" },
+      isPartOf: { "@id": "https://lhnjames.github.io/#website" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lhnjames.github.io/#person",
+      name: "Hanning Lu",
+      alternateName: ["陆涵宁", "lhnjames"],
+      givenName: "Hanning",
+      familyName: "Lu",
+      url: "https://lhnjames.github.io/",
+      image: "https://lhnjames.github.io/hanning-lu.jpg",
+      description:
+        "Computer Science undergraduate and researcher at the University of Leeds working on ML systems, efficient inference, compiler optimization and AI agents.",
+      affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "University of Leeds",
+        url: "https://www.leeds.ac.uk/",
+      },
+      homeLocation: { "@type": "Place", name: "Leeds, United Kingdom" },
+      knowsAbout: [
+        "Machine Learning Systems",
+        "AI Agents",
+        "Compiler Optimization",
+        "Efficient LLM Inference",
+        "Graph Machine Learning",
+      ],
+      sameAs: [
+        "https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en",
+        "https://github.com/lhnjames",
+      ],
+    },
+  ],
+};
+
 const internships = [
   {
     period: "Jun 2025 — Sep 2025",
@@ -230,177 +280,185 @@ export default function Page() {
       "Developed hierarchical generative models for single-cell data, achieving a Core4 score of 0.966 in fate-tree reconstruction at 42,000 cells with stable scaling. Recovered ground-truth lineage structure in C. elegans with temporal fidelity above 0.95. The model outperformed the evaluated generative baselines, reaching 93.5% diversity and an FID of 10.4; a manuscript is in preparation.",
   };
   return (
-    <main className="academic-page" id="top">
-      <header className="academic-header">
-        <div>
-          <h1>
-            Hanning Lu <span>陆涵宁</span>
-          </h1>
-          <p className="profile-location">
-            <MapPin aria-hidden="true" size={14} /> Leeds, UK
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <main className="academic-page" id="top">
+        <header className="academic-header">
+          <div>
+            <h1>
+              Hanning Lu <span>陆涵宁</span>
+            </h1>
+            <p className="profile-location">
+              <MapPin aria-hidden="true" size={14} /> Leeds, UK
+            </p>
+          </div>
+          <div className="header-links">
+            <a
+              href="https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en"
+              aria-label="Google Scholar"
+              title="Google Scholar"
+            >
+              <Icons.googlescholar aria-hidden="true" />
+            </a>
+            <a
+              href="https://github.com/lhnjames"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <Icons.github aria-hidden="true" />
+            </a>
+            <a href="mailto:lhnjames@163.com" aria-label="Email" title="Email">
+              <Icons.email aria-hidden="true" />
+            </a>
+            <a className="resume-link" href="/Hanning_Lu_CV.pdf" download>
+              Resume
+            </a>
+            <a className="contact-link" href="mailto:lhnjames@163.com">
+              Contact
+            </a>
+          </div>
+        </header>
+        <section className="intro" aria-label="About me">
+          <div>
+            <p>
+              Hello! I am an undergraduate in the School of Computing at the{" "}
+              <strong>University of Leeds</strong>, graduating in 2027.
+            </p>
+            <p>
+              I work on <strong>ML Systems (MLSys)</strong> and{" "}
+              <strong>AI Agents</strong>: making models run efficiently and
+              building agents that use tools reliably.
+            </p>
+            <p>
+              My work spans compiler optimization, efficient inference and agent
+              workflows, including a first-author ICS 2026 workshop paper and
+              manuscripts under submission.
+            </p>
+            <p className="phd-note">
+              I am seeking direct-entry PhD opportunities starting in{" "}
+              <strong>September 2027</strong>.
+            </p>
+          </div>
+          <Image
+            className="profile-photo"
+            src="/hanning-lu.jpg"
+            alt="Hanning Lu"
+            width={1200}
+            height={1800}
+            priority
+            unoptimized
+          />
+        </section>
+        <section id="education">
+          <h2>Education</h2>
+          <div className="record-heading">
+            <strong>University of Leeds</strong>
+            <span className="date">2024–2027</span>
+          </div>
+          <p className="record-detail">
+            BSc Computer Science · GPA 3.8/4.0 · Top 1%
           </p>
-        </div>
-        <div className="header-links">
-          <a
-            href="https://scholar.google.com/citations?user=ZjRL5KUAAAAJ&hl=en"
-            aria-label="Google Scholar"
-            title="Google Scholar"
-          >
-            <Icons.googlescholar aria-hidden="true" />
-          </a>
-          <a
-            href="https://github.com/lhnjames"
-            aria-label="GitHub"
-            title="GitHub"
-          >
-            <Icons.github aria-hidden="true" />
-          </a>
-          <a href="mailto:lhnjames@163.com" aria-label="Email" title="Email">
-            <Icons.email aria-hidden="true" />
-          </a>
-          <a className="resume-link" href="/Hanning_Lu_CV.pdf" download>
-            Resume
-          </a>
-          <a className="contact-link" href="mailto:lhnjames@163.com">
-            Contact
-          </a>
-        </div>
-      </header>
-      <section className="intro" aria-label="About me">
-        <div>
-          <p>
-            Hello! I am an undergraduate in the School of Computing at the{" "}
-            <strong>University of Leeds</strong>, graduating in 2027.
-          </p>
-          <p>
-            I work on <strong>ML Systems (MLSys)</strong> and{" "}
-            <strong>AI Agents</strong>: making models run efficiently and
-            building agents that use tools reliably.
-          </p>
-          <p>
-            My work spans compiler optimization, efficient inference and agent
-            workflows, including a first-author ICS 2026 workshop paper and
-            manuscripts under submission.
-          </p>
-          <p className="phd-note">
-            I am seeking direct-entry PhD opportunities starting in{" "}
-            <strong>September 2027</strong>.
-          </p>
-        </div>
-        <Image
-          className="profile-photo"
-          src="/hanning-lu.jpg"
-          alt="Hanning Lu"
-          width={1200}
-          height={1800}
-          priority
-          unoptimized
-        />
-      </section>
-      <section id="education">
-        <h2>Education</h2>
-        <div className="record-heading">
-          <strong>University of Leeds</strong>
-          <span className="date">2024–2027</span>
-        </div>
-        <p className="record-detail">
-          BSc Computer Science · GPA 3.8/4.0 · Top 1%
-        </p>
-      </section>
-      <section id="publications">
-        <h2>Publications</h2>
-        <ol className="papers">
-          {orderedPapers.map((paper) => (
-            <li key={paper.title} className="illustrated-work">
-              <WorkIllustration
-                name={paperArtwork[publications.indexOf(paper)]}
-                alt={paper.title}
-              />
-              <div>
-                {paper.href ? (
-                  <a className="paper-title" href={paper.href}>
-                    {paper.title}
-                  </a>
-                ) : (
-                  <span className="paper-title">{paper.title}</span>
-                )}
-                <div className="paper-meta">{paper.venue}</div>
-                <div className="work-links">
-                  {paper.href && <a href={paper.href}>Paper</a>}
-                  {paper === publications[0] && (
-                    <a href="https://github.com/lhnjames/SAHG">Code</a>
+        </section>
+        <section id="publications">
+          <h2>Publications</h2>
+          <ol className="papers">
+            {orderedPapers.map((paper) => (
+              <li key={paper.title} className="illustrated-work">
+                <WorkIllustration
+                  name={paperArtwork[publications.indexOf(paper)]}
+                  alt={paper.title}
+                />
+                <div>
+                  {paper.href ? (
+                    <a className="paper-title" href={paper.href}>
+                      {paper.title}
+                    </a>
+                  ) : (
+                    <span className="paper-title">{paper.title}</span>
                   )}
-                  <PaperSummary
-                    title={paper.title}
-                    text={paperTldr[publications.indexOf(paper)]}
-                  />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-      <section id="internships">
-        <h2>Internships</h2>
-        <div className="records">
-          {internships.map((item) => (
-            <article key={item.organization} className="illustrated-work">
-              <WorkIllustration
-                name={item.organization === "Sheet0" ? "sheet" : "diffusion"}
-                alt={`${item.organization} research illustration`}
-              />
-              <div>
-                <div className="record-heading">
-                  <strong>
-                    <a href={item.href}>{item.organization}</a>
-                  </strong>
-                  <span className="date">{item.period}</span>
-                </div>
-                <p className="record-detail">{item.role}</p>
-                <p>{item.summary}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section id="research-experience">
-        <h2>Research Experience</h2>
-        <div className="records research-records">
-          {groups.map((item) => (
-            <article key={item.group} className="illustrated-work">
-              <WorkIllustration
-                name={projectDetails[item.group].artwork}
-                alt={projectDetails[item.group].title}
-              />
-              <div>
-                <div className="record-heading">
-                  <h3 className="project-title">
-                    {projectDetails[item.group].title}
-                  </h3>
-                  <span className="date">{item.period}</span>
-                </div>
-                <p className="record-detail">
-                  {item.role} · {item.group} · {item.organization}
-                </p>
-                <p>{topics[item.group]}</p>
-                {projectDetails[item.group].code && (
+                  <div className="paper-meta">{paper.venue}</div>
                   <div className="work-links">
-                    <a href={projectDetails[item.group].code}>Code</a>
+                    {paper.href && <a href={paper.href}>Paper</a>}
+                    {paper === publications[0] && (
+                      <a href="https://github.com/lhnjames/SAHG">Code</a>
+                    )}
+                    <PaperSummary
+                      title={paper.title}
+                      text={paperTldr[publications.indexOf(paper)]}
+                    />
                   </div>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="honours">
-        <h2>Honours</h2>
-        <p>CCPC 2024 · Gold Medal · Team Captain</p>
-        <p>ICPC Xi&apos;an Invitational · Silver Medal · Team Captain</p>
-      </section>
-      <footer>
-        © 2026 Hanning Lu <a href="#top">Back to top ↑</a>
-      </footer>
-    </main>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section id="internships">
+          <h2>Internships</h2>
+          <div className="records">
+            {internships.map((item) => (
+              <article key={item.organization} className="illustrated-work">
+                <WorkIllustration
+                  name={item.organization === "Sheet0" ? "sheet" : "diffusion"}
+                  alt={`${item.organization} research illustration`}
+                />
+                <div>
+                  <div className="record-heading">
+                    <strong>
+                      <a href={item.href}>{item.organization}</a>
+                    </strong>
+                    <span className="date">{item.period}</span>
+                  </div>
+                  <p className="record-detail">{item.role}</p>
+                  <p>{item.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section id="research-experience">
+          <h2>Research Experience</h2>
+          <div className="records research-records">
+            {groups.map((item) => (
+              <article key={item.group} className="illustrated-work">
+                <WorkIllustration
+                  name={projectDetails[item.group].artwork}
+                  alt={projectDetails[item.group].title}
+                />
+                <div>
+                  <div className="record-heading">
+                    <h3 className="project-title">
+                      {projectDetails[item.group].title}
+                    </h3>
+                    <span className="date">{item.period}</span>
+                  </div>
+                  <p className="record-detail">
+                    {item.role} · {item.group} · {item.organization}
+                  </p>
+                  <p>{topics[item.group]}</p>
+                  {projectDetails[item.group].code && (
+                    <div className="work-links">
+                      <a href={projectDetails[item.group].code}>Code</a>
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="honours">
+          <h2>Honours</h2>
+          <p>CCPC 2024 · Gold Medal · Team Captain</p>
+          <p>ICPC Xi&apos;an Invitational · Silver Medal · Team Captain</p>
+        </section>
+        <footer>
+          © 2026 Hanning Lu <a href="#top">Back to top ↑</a>
+        </footer>
+      </main>
+    </>
   );
 }

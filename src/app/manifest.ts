@@ -1,12 +1,11 @@
 import type { MetadataRoute } from "next";
 
-import enMessages from "@/i18n/messages/en/personal.json";
-
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: enMessages.name.full,
-    short_name: enMessages.name.full,
-    description: enMessages.headline.replace(/\n/g, ", "),
+    name: "Hanning Lu",
+    short_name: "Hanning Lu",
+    description:
+      "Personal academic website of Hanning Lu, a Computer Science undergraduate and researcher at the University of Leeds.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

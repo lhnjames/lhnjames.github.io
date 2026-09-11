@@ -5,16 +5,36 @@ import { getMessages } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
 
+const siteUrl = "https://lhnjames.github.io";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  ),
+  metadataBase: new URL(siteUrl),
   title: "Hanning Lu",
   description:
-    "Hanning Lu studies ML systems and AI agents at the University of Leeds. Seeking direct-entry PhD opportunities for September 2027.",
+    "Hanning Lu (陆涵宁) is a Computer Science undergraduate and researcher at the University of Leeds working on ML systems, efficient inference, compiler optimization and AI agents.",
+  authors: [{ name: "Hanning Lu", url: siteUrl }],
+  creator: "Hanning Lu",
+  publisher: "Hanning Lu",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   keywords: [
     "Hanning Lu",
     "陆涵宁",
+    "Hanning Lu University of Leeds",
+    "Hanning Lu computer science",
+    "Hanning Lu researcher",
+    "lhnjames",
+    "machine learning systems",
     "AI systems",
     "compiler optimization",
     "efficient inference",
@@ -22,6 +42,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Hanning Lu",
+    url: siteUrl,
+    siteName: "Hanning Lu",
     description:
       "ML systems and AI agents: efficient inference, compiler optimization and reliable tool use.",
     type: "website",
@@ -30,7 +52,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1729,
         height: 910,
-        alt: "Hanning Lu — MLSys and AI Agents",
+        alt: "Hanning Lu personal academic website",
       },
     ],
   },
@@ -54,11 +76,12 @@ export default async function LocaleLayout({
 
   if (!hasLocale(routing.locales, locale)) notFound();
   const messages = await getMessages();
+  const clientMessages = { blog: messages.blog };
 
   return (
     <html lang="en">
       <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={clientMessages}>
           {children}
         </NextIntlClientProvider>
       </body>
