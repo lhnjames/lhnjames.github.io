@@ -41,6 +41,7 @@ for (const asset of [
   "og.png",
   "Hanning_Lu_CV.pdf",
   "f2a7df3700e64c2dac3d8a6f5c3e225f.txt",
+  "googleabc5953bac970ddb.html",
 ]) {
   await cp(path.join(root, "public", asset), path.join(outputDirectory, asset));
 }
