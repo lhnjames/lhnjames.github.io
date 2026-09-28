@@ -6,16 +6,17 @@ import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 const siteUrl = "https://lhnjames.github.io";
+const canonicalUrl = `${siteUrl}/`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Hanning Lu",
   description:
     "Hanning Lu (陆涵宁) is a Computer Science undergraduate and researcher at the University of Leeds working on ML systems, efficient inference, compiler optimization and AI agents.",
-  authors: [{ name: "Hanning Lu", url: siteUrl }],
+  authors: [{ name: "Hanning Lu", url: canonicalUrl }],
   creator: "Hanning Lu",
   publisher: "Hanning Lu",
-  alternates: { canonical: "/" },
+  alternates: { canonical: canonicalUrl },
   robots: {
     index: true,
     follow: true,
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Hanning Lu",
-    url: siteUrl,
+    url: canonicalUrl,
     siteName: "Hanning Lu",
     description:
       "ML systems and AI agents: efficient inference, compiler optimization and reliable tool use.",

@@ -20,6 +20,7 @@ const personJsonLd = {
       "@id": "https://lhnjames.github.io/#profile",
       url: "https://lhnjames.github.io/",
       name: "Hanning Lu",
+      dateModified: "2026-09-28",
       mainEntity: { "@id": "https://lhnjames.github.io/#person" },
       isPartOf: { "@id": "https://lhnjames.github.io/#website" },
     },
